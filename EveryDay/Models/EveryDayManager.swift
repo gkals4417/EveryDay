@@ -25,8 +25,8 @@ final class EveryDayManager {
         return coreDataArray
     }
     
-    func saveCoreData(word: String, meaning: String, completion: @escaping () -> Void){
-        coreDataManager.saveCoreData(word: word, meaning: meaning) {
+    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void){
+        coreDataManager.saveCoreData(word: word, meaning: meaning, memo: memo) {
             completion()
         }
         print("\(#function) : CoreData Saved")

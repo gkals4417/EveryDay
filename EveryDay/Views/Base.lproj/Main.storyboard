@@ -153,6 +153,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jN9-c9-Hdu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bbG-3A-Rx0">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -174,23 +175,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="110" translatesAutoresizingMaskIntoConstraints="NO" id="iw4-jj-ZQy">
-                                <rect key="frame" x="157.66666666666666" y="260.66666666666669" width="75" height="323.00000000000006"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iw4-jj-ZQy">
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwK-A2-o7A">
-                                        <rect key="frame" x="0.0" y="0.0" width="75" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="190.66666666666666"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-BI-ZwA">
-                                        <rect key="frame" x="0.0" y="144.33333333333331" width="75" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="190.66666666666663" width="390" height="191"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Yw-H6-aIZ">
+                                        <rect key="frame" x="0.0" y="381.66666666666669" width="390" height="190.6666666666668"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yr-Yl-n5U">
-                                        <rect key="frame" x="0.0" y="288.66666666666669" width="75" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="572.33333333333337" width="390" height="190.66666666666663"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
@@ -203,14 +209,17 @@
                         <viewLayoutGuide key="safeArea" id="r0T-3J-k01"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iw4-jj-ZQy" firstAttribute="centerY" secondItem="9QX-ki-K4R" secondAttribute="centerY" id="BJS-pK-gka"/>
-                            <constraint firstItem="iw4-jj-ZQy" firstAttribute="centerX" secondItem="9QX-ki-K4R" secondAttribute="centerX" id="PZi-Y7-gZ0"/>
+                            <constraint firstItem="iw4-jj-ZQy" firstAttribute="top" secondItem="r0T-3J-k01" secondAttribute="top" id="EnB-ZC-HcQ"/>
+                            <constraint firstItem="r0T-3J-k01" firstAttribute="trailing" secondItem="iw4-jj-ZQy" secondAttribute="trailing" id="IP8-Q3-MNZ"/>
+                            <constraint firstItem="r0T-3J-k01" firstAttribute="bottom" secondItem="iw4-jj-ZQy" secondAttribute="bottom" id="SFN-HI-rwx"/>
+                            <constraint firstItem="iw4-jj-ZQy" firstAttribute="leading" secondItem="r0T-3J-k01" secondAttribute="leading" id="o4u-6l-cyY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yqq-Ep-9jc"/>
                     <connections>
                         <outlet property="detailButton" destination="4Yr-Yl-n5U" id="Jq1-4G-s52"/>
                         <outlet property="meaningDetailLabel" destination="bCe-BI-ZwA" id="Bb6-Ko-ywj"/>
+                        <outlet property="memoTextField" destination="5Yw-H6-aIZ" id="Xxx-5D-g0O"/>
                         <outlet property="wordDetailLabel" destination="hwK-A2-o7A" id="0UT-Pn-Mfr"/>
                     </connections>
                 </viewController>

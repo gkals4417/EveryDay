@@ -32,7 +32,8 @@ class WordListViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: UIBarButtonItem) {
         print(#function)
-        appManager.saveCoreData(word: "Hello", meaning: "안녕") {
+        appManager.saveCoreData(word: "Hello", meaning: "안녕", memo: "") {
+            
         }
         savedCoreArray = appManager.getCoreDataArray()
         tableView.reloadData()

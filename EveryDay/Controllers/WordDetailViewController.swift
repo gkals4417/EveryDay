@@ -12,6 +12,9 @@ class WordDetailViewController: UIViewController {
     @IBOutlet weak var meaningDetailLabel: UILabel!
     @IBOutlet weak var wordDetailLabel: UILabel!
     @IBOutlet weak var detailButton: UIButton!
+    @IBOutlet weak var memoTextField: UITextField!
+    
+    let appManager = EveryDayManager.shared
     
     var tempArray: CoreData? {
         didSet {
@@ -21,8 +24,10 @@ class WordDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        memoTextField.delegate = self
         wordDetailLabel.text = tempArray?.savedWord
         meaningDetailLabel.text = tempArray?.savedMeaning
+        memoTextField.text = tempArray?.savedDetailMemo
     }
     
 
@@ -30,4 +35,20 @@ class WordDetailViewController: UIViewController {
         dismiss(animated: true)
     }
 
+}
+
+extension WordDetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let temp = tempArray {
+            temp.savedDetailMemo = textField.text
+            appManager.updateCoreData(newCoreData: temp) {
+                
+            }
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }

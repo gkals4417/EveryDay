@@ -2,7 +2,7 @@
 //  CoreData+CoreDataProperties.swift
 //  EveryDay
 //
-//  Created by Hamin Jeong on 2022/11/09.
+//  Created by Hamin Jeong on 2022/11/15.
 //
 //
 
@@ -16,9 +16,10 @@ extension CoreData {
         return NSFetchRequest<CoreData>(entityName: "CoreData")
     }
 
-    @NSManaged public var savedWord: String?
-    @NSManaged public var savedMeaning: String?
     @NSManaged public var savedDate: Date?
+    @NSManaged public var savedMeaning: String?
+    @NSManaged public var savedWord: String?
+    @NSManaged public var savedDetailMemo: String?
 
 }
 

@@ -42,13 +42,14 @@ final class CoreDataManager {
     
     // MARK: - SAVE
     
-    func saveCoreData(word: String, meaning: String, completion: @escaping () -> Void){
+    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void){
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context){
                 if let coreData = NSManagedObject(entity: entity, insertInto: context) as? CoreData {
                     coreData.savedWord = word
                     coreData.savedMeaning = meaning
                     coreData.savedDate = Date()
+                    coreData.savedDetailMemo = memo
                     
                     if context.hasChanges {
                         do {
@@ -76,7 +77,7 @@ final class CoreDataManager {
         
         if let context = context {
             let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "date = %@", date as CVarArg)
+            request.predicate = NSPredicate(format: "savedDate = %@", date as CVarArg)
             
             do {
                 if let fetched = try context.fetch(request) as? [CoreData]{
@@ -111,7 +112,7 @@ final class CoreDataManager {
         
         if let context = context {
             let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "date = %@", date as CVarArg)
+            request.predicate = NSPredicate(format: "savedDate = %@", date as CVarArg)
             do {
                 if let fetched = try context.fetch(request) as? [CoreData]{
                     if var target = fetched.first {

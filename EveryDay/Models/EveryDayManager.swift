@@ -22,31 +22,35 @@ final class EveryDayManager {
     }
     
     func getCoreDataArray() -> [CoreData]{
+        print(#function)
         return coreDataArray
     }
     
     func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void){
         coreDataManager.saveCoreData(word: word, meaning: meaning, memo: memo) {
             completion()
+            self.coreDataArray = self.coreDataManager.readCoreData()
         }
         print("\(#function) : CoreData Saved")
-        self.coreDataArray = self.coreDataManager.readCoreData()
+        
     }
     
     func updateCoreData(newCoreData: CoreData, completion: @escaping () -> Void){
         coreDataManager.updateCoreData(newCoreData: newCoreData) {
             completion()
+            self.coreDataArray = self.coreDataManager.readCoreData()
         }
         print("\(#function) : CoreData Updated")
-        self.coreDataArray = self.coreDataManager.readCoreData()
+        
     }
     
     func deleteCoreData(targetData: CoreData, completion: @escaping () -> Void){
         coreDataManager.deleteCoreData(data: targetData) {
             completion()
+            self.coreDataArray = self.coreDataManager.readCoreData()
         }
         print("\(#function) : CoreData Deleted")
-        self.coreDataArray = self.coreDataManager.readCoreData()
+        
     }
     
 }

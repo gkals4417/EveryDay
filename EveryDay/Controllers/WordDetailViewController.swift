@@ -29,12 +29,6 @@ class WordDetailViewController: UIViewController {
         meaningDetailLabel.text = tempArray?.savedMeaning
         memoTextField.text = tempArray?.savedDetailMemo
     }
-    
-
-    @IBAction func detailButtonTapped(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-
 }
 
 extension WordDetailViewController: UITextFieldDelegate {

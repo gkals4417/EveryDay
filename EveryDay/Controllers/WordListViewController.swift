@@ -32,11 +32,22 @@ class WordListViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: UIBarButtonItem) {
         print(#function)
-        appManager.saveCoreData(word: "Hello", meaning: "안녕", memo: "") {
-            
+        
+        let alert = UIAlertController(title: nil, message: "입력하세요.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "저장하기", style: .default) { UIAlertAction in
+            self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
+                self.savedCoreArray = self.appManager.getCoreDataArray()
+                self.tableView.reloadData()
+            }
         }
-        savedCoreArray = appManager.getCoreDataArray()
-        tableView.reloadData()
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addTextField()
+        alert.addTextField()
+        alert.textFields?[0].placeholder = "단어를 입력하세요."
+        alert.textFields?[1].placeholder = "뜻을 입력하세요."
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
     }
 }
 
@@ -65,6 +76,20 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let indexPath = sender as? IndexPath else {return}
             detailVC.tempArray = savedCoreArray[indexPath.row]
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let subject = self.savedCoreArray[indexPath.row]
+            savedCoreArray.remove(at: indexPath.row)
+            appManager.coreDataArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            appManager.deleteCoreData(targetData: subject) {
+                
+            }
+        } else if editingStyle == .insert {
+            
         }
     }
     

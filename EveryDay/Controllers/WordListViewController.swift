@@ -11,11 +11,13 @@ class WordListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let appManager = EveryDayManager.shared
+    private let appManager = EveryDayManager.shared
+    let timerVC = TimerViewController()
     
     var savedCoreArray: [CoreData] = []{
         didSet {
-            print(savedCoreArray)
+            print("SavedCoreArray Changed")
+            
         }
     }
     

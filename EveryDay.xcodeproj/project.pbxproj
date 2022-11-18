@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D4067B3292756B300D79C59 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4067B2292756B300D79C59 /* TimerViewController.swift */; };
 		4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */; };
 		4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */; };
 		4DCD1E6C291A283000F51EF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6B291A283000F51EF2 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D4067B2292756B300D79C59 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4DCD1E68291A283000F51EF2 /* EveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 			children = (
 				4DCD1E6F291A283000F51EF2 /* WordListViewController.swift */,
 				4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */,
+				4D4067B2292756B300D79C59 /* TimerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */,
 				4DCD1E76291A283000F51EF2 /* EveryDay.xcdatamodeld in Sources */,
 				4DCD1EC9291B5F6400F51EF2 /* CoreDataManager.swift in Sources */,
+				4D4067B3292756B300D79C59 /* TimerViewController.swift in Sources */,
 				4DCD1E6E291A283000F51EF2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@ class WordDetailViewController: UIViewController {
     @IBOutlet weak var detailButton: UIButton!
     @IBOutlet weak var memoTextField: UITextField!
     
-    let appManager = EveryDayManager.shared
+    private let appManager = EveryDayManager.shared
     
     var tempArray: CoreData? {
         didSet {

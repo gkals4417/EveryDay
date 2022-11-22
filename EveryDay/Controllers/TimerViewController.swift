@@ -31,6 +31,13 @@ class TimerViewController: UIViewController {
     var passedTime: Float = 0.0
     var isPaused: Bool = false
     
+    var randomizedCount: Int = 0
+    var correctCount: Int = 0
+    var failedCount: Int = 0
+    var tempCorrectCount: Int = 0
+    var tempFailedCount: Int = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         answerTextField.delegate = self
@@ -73,8 +80,12 @@ class TimerViewController: UIViewController {
         passedTime = 0.0
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
+        tempCorrectCount = 0
+        tempFailedCount = 0
+        
+        randomizedCount = randomizedArray.count - 1
         countProblemLabel.text = " 0 / \(randomizedArray.count)"
-        questionLabel.text = randomizedArray[0].savedWord
+        questionLabel.text = randomizedArray.last?.savedWord
         
     }
     
@@ -91,7 +102,45 @@ class TimerViewController: UIViewController {
 
 
 extension TimerViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        //더 자세하게 구현해야 함...
+        if textField.text == randomizedArray[randomizedCount].savedMeaning{
+            tempCorrectCount += 1
+            randomizedCount -= 1
+            textField.text = ""
+            
+            if randomizedCount < 0 {
+                timer?.invalidate()
+                progressView.progress = 1.0
+                passedTime = 0
+                timeLabel.text = "모든 문제가 끝났습니다."
+                questionLabel.text = ""
+            } else {
+                questionLabel.text = randomizedArray[randomizedCount].savedWord
+            }
+            print("정답 : \(tempCorrectCount)")
+        } else {
+            tempFailedCount += 1
+            randomizedCount -= 1
+            textField.text = ""
+            if randomizedCount < 0 {
+                timer?.invalidate()
+                progressView.progress = 1.0
+                passedTime = 0
+                timeLabel.text = "모든 문제가 끝났습니다."
+                questionLabel.text = ""
+            } else {
+                questionLabel.text = randomizedArray[randomizedCount].savedWord
+            }
+            print("오답 : \(tempFailedCount)")
+        }
+        correctCount = tempCorrectCount
+        failedCount = tempFailedCount
+        
+        
+        print("최종 정답 갯수 : \(correctCount)")
+        print("최종 오답 갯수 : \(failedCount)")
+        return true
+    }
 }

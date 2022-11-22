@@ -18,7 +18,7 @@ class WordDetailViewController: UIViewController {
     
     var tempArray: CoreData? {
         didSet {
-            print(tempArray)
+            print("\(String(describing: tempArray))")
         }
     }
     

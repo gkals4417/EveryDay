@@ -28,6 +28,7 @@ class WordDetailViewController: UIViewController {
         wordDetailLabel.text = tempArray?.savedWord
         meaningDetailLabel.text = tempArray?.savedMeaning
         memoTextField.text = tempArray?.savedDetailMemo
+        memoTextField.placeholder = "메모를 입력하세요."
     }
 }
 

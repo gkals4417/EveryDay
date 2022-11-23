@@ -45,6 +45,7 @@ class TimerViewController: UIViewController {
         progressUI()
         labelUI()
         randomizedArray = tempArray.shuffled()
+        
     }
     
     func progressUI(){
@@ -103,8 +104,7 @@ class TimerViewController: UIViewController {
 
 extension TimerViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //더 자세하게 구현해야 함...
+
         if textField.text == randomizedArray[randomizedCount].savedMeaning{
             tempCorrectCount += 1
             randomizedCount -= 1

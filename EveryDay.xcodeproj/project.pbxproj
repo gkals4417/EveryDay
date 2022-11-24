@@ -10,6 +10,7 @@
 		4D4067B3292756B300D79C59 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4067B2292756B300D79C59 /* TimerViewController.swift */; };
 		4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */; };
 		4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */; };
+		4D7419CA292F305300A5FCD0 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7419C9292F305300A5FCD0 /* FSCalendar */; };
 		4DCD1E6C291A283000F51EF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6B291A283000F51EF2 /* AppDelegate.swift */; };
 		4DCD1E6E291A283000F51EF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6D291A283000F51EF2 /* SceneDelegate.swift */; };
 		4DCD1E70291A283000F51EF2 /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6F291A283000F51EF2 /* WordListViewController.swift */; };
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D7419CA292F305300A5FCD0 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,9 @@
 			dependencies = (
 			);
 			name = EveryDay;
+			packageProductDependencies = (
+				4D7419C9292F305300A5FCD0 /* FSCalendar */,
+			);
 			productName = EveryDay;
 			productReference = 4DCD1E68291A283000F51EF2 /* EveryDay.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +164,9 @@
 				Base,
 			);
 			mainGroup = 4DCD1E5F291A283000F51EF2;
+			packageReferences = (
+				4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 4DCD1E69291A283000F51EF2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -414,6 +422,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D7419C9292F305300A5FCD0 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4DCD1E74291A283000F51EF2 /* EveryDay.xcdatamodeld */ = {

@@ -7,11 +7,14 @@
 
 import UIKit
 import FSCalendar
+import AVFoundation
 
 class WordListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarView: FSCalendar!
+    
+    let refreshController: UIRefreshControl = UIRefreshControl()
     
     private let appManager = EveryDayManager.shared
     var savedCoreArray: [CoreData] = []{
@@ -23,8 +26,14 @@ class WordListViewController: UIViewController {
     var calendarSelectArray: [CoreData] = []{
         didSet {
             print("calendarSelectArray Changed \n \(calendarSelectArray)")
+            
             tableView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        calendarView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -35,9 +44,23 @@ class WordListViewController: UIViewController {
     func initialFunc(){
         calendarView.delegate = self
         calendarView.dataSource = self
+        
+        calendarView.appearance.headerDateFormat = "YYYY년 M월"
+        calendarView.locale = Locale(identifier: "ko_KR")
+        
         tableView.delegate = self
         tableView.dataSource = self
         savedCoreArray = appManager.getCoreDataArray()
+        
+        tableView.refreshControl = refreshController
+        refreshController.addTarget(self, action: #selector(self.refreshFunc), for: .valueChanged)
+    }
+    
+    @objc func refreshFunc(){
+        calendarView.reloadData()
+        tableView.reloadData()
+        refreshController.endRefreshing()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
@@ -46,6 +69,7 @@ class WordListViewController: UIViewController {
                 self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
                 self.savedCoreArray = self.appManager.getCoreDataArray()
                 self.tableView.reloadData()
+                    self.calendarView.reloadData()
             }
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -85,36 +109,28 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let subject = self.savedCoreArray[indexPath.row]
-//            savedCoreArray.remove(at: indexPath.row)
-//            appManager.coreDataArray.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            appManager.deleteCoreData(targetData: subject) {
-//
-//            }
-//        } else if editingStyle == .insert {
-//
-//        }
-//    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "리스트"
+    }
 }
 
 extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
         calendarSelectArray = []
+        
         for list in savedCoreArray {
-            
             let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
             let b = date.formatted(date: .numeric, time: .omitted)
             
             if a == b {
                 calendarSelectArray.append(list)
             }
-            
         }
+        
         print("띠용? \(calendarSelectArray)")
+        
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -123,18 +139,18 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         for list in savedCoreArray {
             let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
             let b = date.formatted(date: .numeric, time: .omitted)
-            
             if a == b {
                 outNumber = 1
             } else {
-                
+
             }
         }
         
         return outNumber
     }
     
-    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        return false
-    }
+    
+//    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+//        return false
+//    }
 }

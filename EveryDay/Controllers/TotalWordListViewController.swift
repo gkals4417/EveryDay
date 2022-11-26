@@ -58,7 +58,7 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.totalWordLabel.text = savedCoreArray[indexPath.row].savedWord
         cell.totalWordMeaningLabel.text = savedCoreArray[indexPath.row].savedMeaning
-        
+        cell.selectionStyle = .none
         return cell
     }
     

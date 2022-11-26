@@ -39,6 +39,7 @@ class WordListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialFunc()
+        appearanceFunc()
     }
 
     func initialFunc(){
@@ -61,6 +62,29 @@ class WordListViewController: UIViewController {
         tableView.reloadData()
         refreshController.endRefreshing()
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+    
+    func appearanceFunc(){
+        view.backgroundColor = .white
+        tableView.backgroundColor = .white
+        calendarView.backgroundColor = .white
+        
+        calendarView.appearance.selectionColor = .black
+        calendarView.appearance.headerTitleColor = .black
+        calendarView.appearance.titleWeekendColor = .red
+        calendarView.appearance.todayColor = .blue
+        calendarView.appearance.eventDefaultColor = .black
+        calendarView.appearance.eventSelectionColor = .black
+        
+        
+        calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
+        calendarView.calendarWeekdayView.weekdayLabels[1].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[2].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[3].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[4].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[5].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[6].textColor = .red
+        
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
@@ -93,7 +117,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifierWordListCell", for: indexPath) as! WordListCell
         cell.wordLabel.text = calendarSelectArray[indexPath.row].savedWord
         cell.meaningLabel.text = calendarSelectArray[indexPath.row].savedMeaning
-        
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -113,6 +137,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         return "리스트"
     }
 }
+
 
 extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
@@ -149,6 +174,19 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         return outNumber
     }
     
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        let today = Date()
+        var temp = ""
+        
+        if today.formatted(date: .numeric, time: .omitted) == date.formatted(date: .numeric, time: .omitted){
+            temp = "오늘"
+        }
+        return temp
+    }
+    
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+//        return .black
+//    }
     
 //    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
 //        return false

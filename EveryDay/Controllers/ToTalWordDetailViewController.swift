@@ -1,37 +1,39 @@
 //
-//  WordDetailViewController.swift
+//  ToTalWordDetailViewController.swift
 //  EveryDay
 //
-//  Created by Hamin Jeong on 2022/11/09.
+//  Created by Hamin Jeong on 2022/11/25.
 //
 
 import UIKit
 
-class WordDetailViewController: UIViewController {
+class ToTalWordDetailViewController: UIViewController {
 
-    @IBOutlet weak var meaningDetailLabel: UILabel!
-    @IBOutlet weak var wordDetailLabel: UILabel!
+    @IBOutlet weak var wordLabel: UILabel!
+    @IBOutlet weak var meaningLabel: UILabel!
     @IBOutlet weak var memoTextField: UITextField!
     
-    private let appManager = EveryDayManager.shared
+    let appManager = EveryDayManager.shared
     
     var tempArray: CoreData? {
         didSet {
-            print("tempArray Changed : \n \(tempArray)")
+            print("Total Word Detail TempArray Changed \n \(tempArray)")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         memoTextField.delegate = self
-        wordDetailLabel.text = tempArray?.savedWord
-        meaningDetailLabel.text = tempArray?.savedMeaning
+        wordLabel.text = tempArray?.savedWord
+        meaningLabel.text = tempArray?.savedMeaning
         memoTextField.text = tempArray?.savedDetailMemo
         memoTextField.placeholder = "메모를 입력하세요."
     }
+
+
 }
 
-extension WordDetailViewController: UITextFieldDelegate {
+extension ToTalWordDetailViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let temp = tempArray {
             temp.savedDetailMemo = textField.text

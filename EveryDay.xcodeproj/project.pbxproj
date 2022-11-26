@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D4067B3292756B300D79C59 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4067B2292756B300D79C59 /* TimerViewController.swift */; };
 		4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */; };
 		4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */; };
+		4D7419CA292F305300A5FCD0 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7419C9292F305300A5FCD0 /* FSCalendar */; };
 		4DCD1E6C291A283000F51EF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6B291A283000F51EF2 /* AppDelegate.swift */; };
 		4DCD1E6E291A283000F51EF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6D291A283000F51EF2 /* SceneDelegate.swift */; };
 		4DCD1E70291A283000F51EF2 /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6F291A283000F51EF2 /* WordListViewController.swift */; };
@@ -21,10 +21,12 @@
 		4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */; };
 		4DCD1ED0291B71FA00F51EF2 /* WordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ECF291B71FA00F51EF2 /* WordListCell.swift */; };
 		4DCD1ED2291B86D200F51EF2 /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */; };
+		4DD845622930959C007C2519 /* TotalWordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD845612930959C007C2519 /* TotalWordListCell.swift */; };
+		4DD845642930961B007C2519 /* TotalWordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD845632930961B007C2519 /* TotalWordListViewController.swift */; };
+		4DD8456629309B9B007C2519 /* ToTalWordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8456529309B9B007C2519 /* ToTalWordDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D4067B2292756B300D79C59 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4DCD1E68291A283000F51EF2 /* EveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +42,9 @@
 		4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryDayManager.swift; sourceTree = "<group>"; };
 		4DCD1ECF291B71FA00F51EF2 /* WordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListCell.swift; sourceTree = "<group>"; };
 		4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
+		4DD845612930959C007C2519 /* TotalWordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWordListCell.swift; sourceTree = "<group>"; };
+		4DD845632930961B007C2519 /* TotalWordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWordListViewController.swift; sourceTree = "<group>"; };
+		4DD8456529309B9B007C2519 /* ToTalWordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTalWordDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D7419CA292F305300A5FCD0 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +107,7 @@
 			children = (
 				4DCD1E71291A283000F51EF2 /* Main.storyboard */,
 				4DCD1ECF291B71FA00F51EF2 /* WordListCell.swift */,
+				4DD845612930959C007C2519 /* TotalWordListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,7 +117,8 @@
 			children = (
 				4DCD1E6F291A283000F51EF2 /* WordListViewController.swift */,
 				4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */,
-				4D4067B2292756B300D79C59 /* TimerViewController.swift */,
+				4DD845632930961B007C2519 /* TotalWordListViewController.swift */,
+				4DD8456529309B9B007C2519 /* ToTalWordDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -131,6 +139,9 @@
 			dependencies = (
 			);
 			name = EveryDay;
+			packageProductDependencies = (
+				4D7419C9292F305300A5FCD0 /* FSCalendar */,
+			);
 			productName = EveryDay;
 			productReference = 4DCD1E68291A283000F51EF2 /* EveryDay.app */;
 			productType = "com.apple.product-type.application";
@@ -152,13 +163,16 @@
 			};
 			buildConfigurationList = 4DCD1E63291A283000F51EF2 /* Build configuration list for PBXProject "EveryDay" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ko,
 				Base,
 			);
 			mainGroup = 4DCD1E5F291A283000F51EF2;
+			packageReferences = (
+				4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 4DCD1E69291A283000F51EF2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,6 +202,7 @@
 			files = (
 				4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */,
 				4DCD1ED0291B71FA00F51EF2 /* WordListCell.swift in Sources */,
+				4DD845622930959C007C2519 /* TotalWordListCell.swift in Sources */,
 				4DCD1ED2291B86D200F51EF2 /* WordDetailViewController.swift in Sources */,
 				4DCD1E70291A283000F51EF2 /* WordListViewController.swift in Sources */,
 				4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */,
@@ -195,7 +210,8 @@
 				4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */,
 				4DCD1E76291A283000F51EF2 /* EveryDay.xcdatamodeld in Sources */,
 				4DCD1EC9291B5F6400F51EF2 /* CoreDataManager.swift in Sources */,
-				4D4067B3292756B300D79C59 /* TimerViewController.swift in Sources */,
+				4DD845642930961B007C2519 /* TotalWordListViewController.swift in Sources */,
+				4DD8456629309B9B007C2519 /* ToTalWordDetailViewController.swift in Sources */,
 				4DCD1E6E291A283000F51EF2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,11 +362,14 @@
 				DEVELOPMENT_TEAM = 5566XK43XC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EveryDay/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,9 +377,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsar.EveryDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -374,11 +396,14 @@
 				DEVELOPMENT_TEAM = 5566XK43XC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EveryDay/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -386,9 +411,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsar.EveryDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -414,6 +442,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D7419C9292F305300A5FCD0 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4DCD1E74291A283000F51EF2 /* EveryDay.xcdatamodeld */ = {

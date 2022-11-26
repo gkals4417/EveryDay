@@ -6,40 +6,94 @@
 //
 
 import UIKit
+import FSCalendar
+import AVFoundation
 
 class WordListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var calendarView: FSCalendar!
+    
+    let refreshController: UIRefreshControl = UIRefreshControl()
     
     private let appManager = EveryDayManager.shared
-    
-    let timerVC = TimerViewController()
-    
     var savedCoreArray: [CoreData] = []{
         didSet {
-            print("SavedCoreArray Changed")
+            print("savedCoreArray Changed \n \(savedCoreArray)")
         }
+    }
+    
+    var calendarSelectArray: [CoreData] = []{
+        didSet {
+            print("calendarSelectArray Changed \n \(calendarSelectArray)")
+            
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        calendarView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialSetup()
-    }
-    
-    func initialSetup(){
-        savedCoreArray = appManager.getCoreDataArray()
-        tableView.delegate = self
-        tableView.dataSource = self
+        initialFunc()
+        appearanceFunc()
     }
 
-    @IBAction func buttonTapped(_ sender: UIBarButtonItem) {
-        print(#function)
+    func initialFunc(){
+        calendarView.delegate = self
+        calendarView.dataSource = self
         
+        calendarView.appearance.headerDateFormat = "YYYY년 M월"
+        calendarView.locale = Locale(identifier: "ko_KR")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        savedCoreArray = appManager.getCoreDataArray()
+        
+        tableView.refreshControl = refreshController
+        refreshController.addTarget(self, action: #selector(self.refreshFunc), for: .valueChanged)
+    }
+    
+    @objc func refreshFunc(){
+        calendarView.reloadData()
+        tableView.reloadData()
+        refreshController.endRefreshing()
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+    
+    func appearanceFunc(){
+        view.backgroundColor = .white
+        tableView.backgroundColor = .white
+        calendarView.backgroundColor = .white
+        
+        calendarView.appearance.selectionColor = .black
+        calendarView.appearance.headerTitleColor = .black
+        calendarView.appearance.titleWeekendColor = .red
+        calendarView.appearance.todayColor = .blue
+        calendarView.appearance.eventDefaultColor = .black
+        calendarView.appearance.eventSelectionColor = .black
+        
+        
+        calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
+        calendarView.calendarWeekdayView.weekdayLabels[1].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[2].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[3].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[4].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[5].textColor = .black
+        calendarView.calendarWeekdayView.weekdayLabels[6].textColor = .red
+        
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: "입력하세요.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "저장하기", style: .default) { UIAlertAction in
-            self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
+                self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
                 self.savedCoreArray = self.appManager.getCoreDataArray()
                 self.tableView.reloadData()
+                    self.calendarView.reloadData()
             }
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -56,18 +110,17 @@ class WordListViewController: UIViewController {
 
 extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedCoreArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "identifierWordListCell", for: indexPath) as! WordListCell
-        cell.wordLabel.text = savedCoreArray[indexPath.row].savedWord
-        cell.meaningLabel.text = savedCoreArray[indexPath.row].savedMeaning
-        cell.selectionStyle = .none
-        
-        return cell
+        return calendarSelectArray.count
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "identifierWordListCell", for: indexPath) as! WordListCell
+        cell.wordLabel.text = calendarSelectArray[indexPath.row].savedWord
+        cell.meaningLabel.text = calendarSelectArray[indexPath.row].savedMeaning
+        cell.selectionStyle = .none
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toWordDetailVC", sender: indexPath)
     }
@@ -75,24 +128,67 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toWordDetailVC" {
             let detailVC = segue.destination as! WordDetailViewController
-            
             guard let indexPath = sender as? IndexPath else {return}
-            detailVC.tempArray = savedCoreArray[indexPath.row]
+            detailVC.tempArray = calendarSelectArray[indexPath.row]
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let subject = self.savedCoreArray[indexPath.row]
-            savedCoreArray.remove(at: indexPath.row)
-            appManager.coreDataArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            appManager.deleteCoreData(targetData: subject) {
-                
-            }
-        } else if editingStyle == .insert {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "리스트"
+    }
+}
+
+
+extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        calendarSelectArray = []
+        
+        for list in savedCoreArray {
+            let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
+            let b = date.formatted(date: .numeric, time: .omitted)
             
+            if a == b {
+                calendarSelectArray.append(list)
+            }
         }
+        
+        print("띠용? \(calendarSelectArray)")
+        
     }
     
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        var outNumber: Int = 0
+        
+        for list in savedCoreArray {
+            let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
+            let b = date.formatted(date: .numeric, time: .omitted)
+            if a == b {
+                outNumber = 1
+            } else {
+
+            }
+        }
+        
+        return outNumber
+    }
+    
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        let today = Date()
+        var temp = ""
+        
+        if today.formatted(date: .numeric, time: .omitted) == date.formatted(date: .numeric, time: .omitted){
+            temp = "오늘"
+        }
+        return temp
+    }
+    
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+//        return .black
+//    }
+    
+//    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+//        return false
+//    }
 }

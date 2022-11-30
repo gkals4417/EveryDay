@@ -72,9 +72,10 @@ class WordListViewController: UIViewController {
         calendarView.appearance.selectionColor = .black
         calendarView.appearance.headerTitleColor = .black
         calendarView.appearance.titleWeekendColor = .red
-        calendarView.appearance.todayColor = .blue
+        calendarView.appearance.todayColor = .black
         calendarView.appearance.eventDefaultColor = .black
         calendarView.appearance.eventSelectionColor = .black
+        calendarView.appearance.borderRadius = 0
         
         
         calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
@@ -88,8 +89,11 @@ class WordListViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: nil, message: "입력하세요.", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "저장하기", style: .default) { UIAlertAction in
+        let alert = UIAlertController(title: nil, message: "추가", preferredStyle: .alert)
+        alert.view.tintColor = .black
+        alert.view.backgroundColor = .lightGray
+        alert.view.layer.cornerRadius = 20
+        let ok = UIAlertAction(title: "저장", style: .default) { UIAlertAction in
                 self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
                 self.savedCoreArray = self.appManager.getCoreDataArray()
                 self.tableView.reloadData()
@@ -118,6 +122,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.wordLabel.text = calendarSelectArray[indexPath.row].savedWord
         cell.meaningLabel.text = calendarSelectArray[indexPath.row].savedMeaning
         cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
@@ -133,8 +138,25 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "리스트"
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "LIST"
+//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let imageView = UIImageView()
+        let myImage: UIImage = UIImage(named: "LIST")!
+        imageView.image = myImage
+        
+        let header = UIView()
+        header.backgroundColor = .white
+        header.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
+//        imageView.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
+//        imageView.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
+//        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+//        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        return header
     }
 }
 
@@ -154,7 +176,7 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
             }
         }
         
-        print("띠용? \(calendarSelectArray)")
+        print("calendarSelectArray after select date : \(calendarSelectArray)")
         
     }
     
@@ -184,6 +206,8 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         return temp
     }
     
+    
+
 //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
 //        return .black
 //    }

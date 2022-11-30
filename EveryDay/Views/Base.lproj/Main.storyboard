@@ -80,7 +80,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KGM-HC-xmU">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="BY8-QB-sh7">
+                        <barButtonItem key="rightBarButtonItem" image="AddButton" style="plain" id="BY8-QB-sh7">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="pze-Xa-o8w"/>
                             </connections>
@@ -268,6 +269,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="Lf8-7A-fdU" kind="relationship" relationship="viewControllers" id="8Yg-nK-fM2"/>
@@ -338,6 +341,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddButton" width="21" height="21"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>

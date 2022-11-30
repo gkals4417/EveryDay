@@ -59,6 +59,7 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
         cell.totalWordLabel.text = savedCoreArray[indexPath.row].savedWord
         cell.totalWordMeaningLabel.text = savedCoreArray[indexPath.row].savedMeaning
         cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
@@ -87,7 +88,22 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "리스트"
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let imageView = UIImageView()
+        let myImage: UIImage = UIImage(named: "LIST")!
+        imageView.image = myImage
+        
+        let header = UIView()
+        header.backgroundColor = .white
+        header.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
+//        imageView.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
+//        imageView.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
+//        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+//        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        return header
     }
 }

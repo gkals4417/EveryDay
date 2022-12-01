@@ -26,10 +26,6 @@ class WordDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         initialFunc()
         appearanceFunc()
         webViewFunc()
@@ -70,7 +66,8 @@ class WordDetailViewController: UIViewController {
     }
     
     func webViewFunc(){
-        guard let url = URL(string: "https://dict.naver.com") else {return}
+        guard let searchTerm = wordDetailLabel.text else {return}
+        guard let url = URL(string: "https://en.dict.naver.com/#/search?query=\(searchTerm)&") else {return}
         let request = URLRequest(url: url)
         DispatchQueue.main.async {
             self.webView.load(request)
@@ -91,6 +88,14 @@ extension WordDetailViewController: UITextFieldDelegate {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 

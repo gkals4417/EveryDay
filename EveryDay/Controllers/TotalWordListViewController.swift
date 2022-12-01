@@ -104,10 +104,6 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
-//        imageView.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
-//        imageView.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         return header
     }
 }

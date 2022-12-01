@@ -40,7 +40,6 @@ class WordListViewController: UIViewController {
         super.viewDidLoad()
         initialFunc()
         appearanceFunc()
-        
         tableView.register(UINib(nibName: "WordListCell", bundle: nil), forCellReuseIdentifier: "identifierWordListCell")
     }
 
@@ -73,14 +72,15 @@ class WordListViewController: UIViewController {
         tableView.backgroundColor = .white
         calendarView.backgroundColor = .white
         
+        calendarView.appearance.subtitleTodayColor = .black
+        calendarView.appearance.titleTodayColor = .black
         calendarView.appearance.selectionColor = .black
         calendarView.appearance.headerTitleColor = .black
         calendarView.appearance.titleWeekendColor = .red
-        calendarView.appearance.todayColor = .black
+        calendarView.appearance.todayColor = .white
         calendarView.appearance.eventDefaultColor = .black
         calendarView.appearance.eventSelectionColor = .black
         calendarView.appearance.borderRadius = 0.1
-        //calendarView.appearance.eventOffset = CGPoint(x: 0, y: -7)
         calendarView.swipeToChooseGesture.isEnabled = true
         
         calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
@@ -149,9 +149,6 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "LIST"
-//    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let imageView = UIImageView()
         let myImage: UIImage = UIImage(named: "LIST")!
@@ -163,10 +160,6 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
-//        imageView.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
-//        imageView.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         return header
     }
 }
@@ -185,6 +178,19 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
             }
         }
         print("calendarSelectArray after select date : \(calendarSelectArray)")
+    }
+    
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendarSelectArray = []
+        
+        for list in savedCoreArray {
+            let today = Date().formatted(date: .numeric, time: .omitted)
+            let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
+            
+            if today == a {
+                calendarSelectArray.append(list)
+            }
+        }
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -209,15 +215,4 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         }
         return temp
     }
-    
-    
-
-//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-//        return .black
-//    }
-    
-//    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-//        return false
-//    }
-
 }

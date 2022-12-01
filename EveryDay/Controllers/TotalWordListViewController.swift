@@ -23,6 +23,7 @@ class TotalWordListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "TotalWordListCell", bundle: nil), forCellReuseIdentifier: "identifierTotalWordListCell")
         initialFunc()
     }
 
@@ -52,6 +53,9 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
         return savedCoreArray.count
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifierTotalWordListCell", for: indexPath) as! TotalWordListCell

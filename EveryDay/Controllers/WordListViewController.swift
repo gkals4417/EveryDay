@@ -10,7 +10,8 @@ import FSCalendar
 import AVFoundation
 
 class WordListViewController: UIViewController {
-
+    
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarView: FSCalendar!
     
@@ -26,7 +27,6 @@ class WordListViewController: UIViewController {
     var calendarSelectArray: [CoreData] = []{
         didSet {
             print("calendarSelectArray Changed \n \(calendarSelectArray)")
-            
             tableView.reloadData()
         }
     }
@@ -40,9 +40,11 @@ class WordListViewController: UIViewController {
         super.viewDidLoad()
         initialFunc()
         appearanceFunc()
+        
+        tableView.register(UINib(nibName: "WordListCell", bundle: nil), forCellReuseIdentifier: "identifierWordListCell")
     }
 
-    func initialFunc(){
+    private func initialFunc(){
         calendarView.delegate = self
         calendarView.dataSource = self
         
@@ -64,7 +66,9 @@ class WordListViewController: UIViewController {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
-    func appearanceFunc(){
+    
+    
+    private func appearanceFunc(){
         view.backgroundColor = .white
         tableView.backgroundColor = .white
         calendarView.backgroundColor = .white
@@ -75,8 +79,9 @@ class WordListViewController: UIViewController {
         calendarView.appearance.todayColor = .black
         calendarView.appearance.eventDefaultColor = .black
         calendarView.appearance.eventSelectionColor = .black
-        calendarView.appearance.borderRadius = 0
-        
+        calendarView.appearance.borderRadius = 0.1
+        //calendarView.appearance.eventOffset = CGPoint(x: 0, y: -7)
+        calendarView.swipeToChooseGesture.isEnabled = true
         
         calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
         calendarView.calendarWeekdayView.weekdayLabels[1].textColor = .black
@@ -117,6 +122,8 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         return calendarSelectArray.count
     }
 
+   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifierWordListCell", for: indexPath) as! WordListCell
         cell.wordLabel.text = calendarSelectArray[indexPath.row].savedWord
@@ -124,6 +131,10 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -164,9 +175,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
 extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
         calendarSelectArray = []
-        
         for list in savedCoreArray {
             let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
             let b = date.formatted(date: .numeric, time: .omitted)
@@ -175,14 +184,11 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
                 calendarSelectArray.append(list)
             }
         }
-        
         print("calendarSelectArray after select date : \(calendarSelectArray)")
-        
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         var outNumber: Int = 0
-        
         for list in savedCoreArray {
             let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
             let b = date.formatted(date: .numeric, time: .omitted)
@@ -192,14 +198,12 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
 
             }
         }
-        
         return outNumber
     }
     
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
         let today = Date()
         var temp = ""
-        
         if today.formatted(date: .numeric, time: .omitted) == date.formatted(date: .numeric, time: .omitted){
             temp = "오늘"
         }
@@ -215,4 +219,5 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
 //    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
 //        return false
 //    }
+
 }

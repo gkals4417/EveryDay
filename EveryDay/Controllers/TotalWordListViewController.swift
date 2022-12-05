@@ -43,7 +43,7 @@ class TotalWordListViewController: UIViewController {
         savedCoreArray = appManager.getCoreDataArray()
         tableView.reloadData()
         refreshController.endRefreshing()
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        AudioServicesPlaySystemSound(1102)
     }
     
 }

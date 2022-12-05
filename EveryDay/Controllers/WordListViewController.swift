@@ -11,11 +11,14 @@ import AVFoundation
 
 class WordListViewController: UIViewController {
     
+    @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarView: FSCalendar!
     
     let refreshController: UIRefreshControl = UIRefreshControl()
+
+    var currentPage = Date()
     
     private let appManager = EveryDayManager.shared
     var savedCoreArray: [CoreData] = []{
@@ -62,7 +65,7 @@ class WordListViewController: UIViewController {
         calendarView.reloadData()
         tableView.reloadData()
         refreshController.endRefreshing()
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        AudioServicesPlaySystemSound(1102)
     }
     
     
@@ -71,7 +74,10 @@ class WordListViewController: UIViewController {
         view.backgroundColor = .white
         tableView.backgroundColor = .white
         calendarView.backgroundColor = .white
+        todayButton.setTitle("오늘", for: .normal)
+        todayButton.setTitleColor(.black, for: .normal)
         
+        calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
         calendarView.appearance.subtitleTodayColor = .black
         calendarView.appearance.titleTodayColor = .black
         calendarView.appearance.selectionColor = .black
@@ -113,6 +119,11 @@ class WordListViewController: UIViewController {
         alert.addAction(ok)
         alert.addAction(cancel)
         present(alert, animated: true)
+    }
+    
+    @IBAction func todayButtonTapped(_ sender: UIButton) {
+        print(#function)
+        calendarView.setCurrentPage(currentPage, animated: true)
     }
 }
 
@@ -215,4 +226,6 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         }
         return temp
     }
+    
+
 }

@@ -30,12 +30,26 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnD-a0-A0f">
+                                <rect key="frame" x="320" y="96" width="60" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="ILA-10-Hkm"/>
+                                    <constraint firstAttribute="height" constant="40" id="d4v-fu-feN"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="오늘"/>
+                                <connections>
+                                    <action selector="todayButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVi-59-qS4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="EnD-a0-A0f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="0bp-Ql-PW7"/>
                             <constraint firstItem="1Xv-10-F81" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ALv-t0-AEF"/>
                             <constraint firstAttribute="bottom" secondItem="1Xv-10-F81" secondAttribute="bottom" id="DKa-jW-xiL"/>
+                            <constraint firstItem="EnD-a0-A0f" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="JJU-BO-U0k"/>
                             <constraint firstAttribute="trailing" secondItem="1Xv-10-F81" secondAttribute="trailing" id="d0u-G2-cyB"/>
                             <constraint firstItem="1Xv-10-F81" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mL9-JS-hgy"/>
                         </constraints>
@@ -51,6 +65,7 @@
                     <connections>
                         <outlet property="calendarView" destination="n1P-Gt-Xgz" id="S50-dl-PkB"/>
                         <outlet property="tableView" destination="hWr-bP-Obf" id="XZi-Fk-Q6C"/>
+                        <outlet property="todayButton" destination="EnD-a0-A0f" id="4W8-4V-duZ"/>
                         <segue destination="WWY-lD-OW4" kind="showDetail" identifier="toWordDetailVC" id="tHq-ai-znD"/>
                     </connections>
                 </viewController>

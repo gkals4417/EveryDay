@@ -76,7 +76,7 @@
         <!--정보-->
         <scene sceneID="pbJ-y0-urS">
             <objects>
-                <viewController id="tvv-ci-uIb" sceneMemberID="viewController">
+                <viewController id="tvv-ci-uIb" customClass="InformationViewController" customModule="EveryDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TRt-tb-LkO">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpw-8b-v0p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3175" y="949"/>
+            <point key="canvasLocation" x="3175" y="1698"/>
         </scene>
         <!--단어목록-->
         <scene sceneID="ee2-oo-GwX">
@@ -120,6 +120,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWV-Kq-QPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3173.8461538461538" y="207.58293838862559"/>
+        </scene>
+        <!--문제풀기-->
+        <scene sceneID="mYc-gf-DyM">
+            <objects>
+                <viewController id="mQI-Q8-Khq" customClass="QuizViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fna-by-9rN">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hN9-eG-uq8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="문제풀기" image="questionmark.folder.fill" catalog="system" id="f8y-K9-bbZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GlV-Z5-aS3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3175" y="926"/>
         </scene>
         <!--To Tal Word Detail View Controller-->
         <scene sceneID="BPR-RM-Dib">
@@ -229,7 +245,8 @@
                     <connections>
                         <segue destination="Lf8-7A-fdU" kind="relationship" relationship="viewControllers" id="8Yg-nK-fM2"/>
                         <segue destination="PTF-YE-lRm" kind="relationship" relationship="viewControllers" id="qRM-hQ-liP"/>
-                        <segue destination="tvv-ci-uIb" kind="relationship" relationship="viewControllers" id="LPo-By-0OD"/>
+                        <segue destination="mQI-Q8-Khq" kind="relationship" relationship="viewControllers" id="Pyn-oC-0Cc"/>
+                        <segue destination="tvv-ci-uIb" kind="relationship" relationship="viewControllers" id="03u-w8-WoI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Cd-uO-9db" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -325,6 +342,7 @@
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="questionmark.folder.fill" catalog="system" width="128" height="96"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

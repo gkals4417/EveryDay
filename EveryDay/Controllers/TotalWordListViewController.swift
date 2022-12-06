@@ -12,10 +12,9 @@ class TotalWordListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let appManager = EveryDayManager.shared
-    let refreshController: UIRefreshControl = UIRefreshControl()
-    
-    var savedCoreArray: [CoreData] = []{
+    private let appManager = EveryDayManager.shared
+    private let refreshController: UIRefreshControl = UIRefreshControl()
+    private var savedCoreArray: [CoreData] = [] {
         didSet {
             print("Total ViewController savedCoreArray changed \n \(savedCoreArray)")
         }
@@ -29,9 +28,10 @@ class TotalWordListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        tableView.separatorStyle = .none
     }
     
-    func initialFunc(){
+    func initialFunc() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.refreshControl = refreshController
@@ -39,7 +39,7 @@ class TotalWordListViewController: UIViewController {
         savedCoreArray = appManager.getCoreDataArray()
     }
     
-    @objc func refreshFunc(){
+    @objc func refreshFunc() {
         savedCoreArray = appManager.getCoreDataArray()
         tableView.reloadData()
         refreshController.endRefreshing()
@@ -54,12 +54,11 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 60
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifierTotalWordListCell", for: indexPath) as! TotalWordListCell
-        
         cell.totalWordLabel.text = savedCoreArray[indexPath.row].savedWord
         cell.totalWordMeaningLabel.text = savedCoreArray[indexPath.row].savedMeaning
         cell.selectionStyle = .none
@@ -88,10 +87,8 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
             appManager.deleteCoreData(targetData: subject) {
             }
             } else if editingStyle == .insert {
-                
         }
     }
-    
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let imageView = UIImageView()

@@ -20,7 +20,6 @@ class WordListCell: UITableViewCell {
         contentView.layer.masksToBounds = true
         contentView.layer.borderWidth = 0.1
         contentView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-
     }
     
     override func awakeFromNib() {

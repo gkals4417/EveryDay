@@ -16,18 +16,15 @@ class WordListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarView: FSCalendar!
     
-    let refreshController: UIRefreshControl = UIRefreshControl()
-
-    var currentPage = Date()
-    
+    private let refreshController: UIRefreshControl = UIRefreshControl()
+    private var currentPage = Date()
     private let appManager = EveryDayManager.shared
-    var savedCoreArray: [CoreData] = []{
+    private var savedCoreArray: [CoreData] = [] {
         didSet {
             print("savedCoreArray Changed \n \(savedCoreArray)")
         }
     }
-    
-    var calendarSelectArray: [CoreData] = []{
+    private var calendarSelectArray: [CoreData] = [] {
         didSet {
             print("calendarSelectArray Changed \n \(calendarSelectArray)")
             tableView.reloadData()
@@ -46,7 +43,7 @@ class WordListViewController: UIViewController {
         tableView.register(UINib(nibName: "WordListCell", bundle: nil), forCellReuseIdentifier: "identifierWordListCell")
     }
 
-    private func initialFunc(){
+    private func initialFunc() {
         calendarView.delegate = self
         calendarView.dataSource = self
         
@@ -61,21 +58,21 @@ class WordListViewController: UIViewController {
         refreshController.addTarget(self, action: #selector(self.refreshFunc), for: .valueChanged)
     }
     
-    @objc func refreshFunc(){
+    @objc func refreshFunc() {
         calendarView.reloadData()
         tableView.reloadData()
         refreshController.endRefreshing()
         AudioServicesPlaySystemSound(1102)
     }
     
-    
-    
-    private func appearanceFunc(){
+    private func appearanceFunc() {
         view.backgroundColor = .white
         tableView.backgroundColor = .white
+        tableView.separatorStyle = .none
         calendarView.backgroundColor = .white
         todayButton.setTitle("오늘", for: .normal)
         todayButton.setTitleColor(.black, for: .normal)
+        todayButton.setTitleColor(.lightGray, for: .highlighted)
         
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
         calendarView.appearance.subtitleTodayColor = .black
@@ -133,8 +130,6 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
         return calendarSelectArray.count
     }
 
-   
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifierWordListCell", for: indexPath) as! WordListCell
         cell.wordLabel.text = calendarSelectArray[indexPath.row].savedWord
@@ -145,7 +140,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -155,7 +150,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toWordDetailVC" {
             let detailVC = segue.destination as! WordDetailViewController
-            guard let indexPath = sender as? IndexPath else {return}
+            guard let indexPath = sender as? IndexPath else { return }
             detailVC.tempArray = calendarSelectArray[indexPath.row]
         }
     }
@@ -175,9 +170,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
 extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendarSelectArray = []
         for list in savedCoreArray {
@@ -226,6 +219,4 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         }
         return temp
     }
-    
-
 }

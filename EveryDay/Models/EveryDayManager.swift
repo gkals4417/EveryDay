@@ -26,7 +26,7 @@ final class EveryDayManager {
         return coreDataArray
     }
     
-    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void){
+    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void) {
         coreDataManager.saveCoreData(word: word, meaning: meaning, memo: memo) {
             completion()
             self.coreDataArray = self.coreDataManager.readCoreData()
@@ -35,7 +35,7 @@ final class EveryDayManager {
         
     }
     
-    func updateCoreData(newCoreData: CoreData, completion: @escaping () -> Void){
+    func updateCoreData(newCoreData: CoreData, completion: @escaping () -> Void) {
         coreDataManager.updateCoreData(newCoreData: newCoreData) {
             completion()
             self.coreDataArray = self.coreDataManager.readCoreData()
@@ -44,7 +44,7 @@ final class EveryDayManager {
         
     }
     
-    func deleteCoreData(targetData: CoreData, completion: @escaping () -> Void){
+    func deleteCoreData(targetData: CoreData, completion: @escaping () -> Void) {
         coreDataManager.deleteCoreData(data: targetData) {
             completion()
             self.coreDataArray = self.coreDataManager.readCoreData()

@@ -15,9 +15,7 @@ class WordDetailViewController: UIViewController {
     @IBOutlet weak var meaningDetailLabel: UILabel!
     @IBOutlet weak var wordDetailLabel: UILabel!
     @IBOutlet weak var memoTextField: UITextField!
-    
     private let appManager = EveryDayManager.shared
-    
     var tempArray: CoreData? {
         didSet {
             print("tempArray Changed : \n \(String(describing: tempArray))")
@@ -36,7 +34,7 @@ class WordDetailViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func initialFunc(){
+    private func initialFunc() {
         webView.navigationDelegate = self
         memoTextField.delegate = self
         wordDetailLabel.text = tempArray?.savedWord
@@ -45,7 +43,10 @@ class WordDetailViewController: UIViewController {
         memoTextField.placeholder = "메모를 입력하세요."
     }
     
-    private func appearanceFunc(){
+    private func appearanceFunc() {
+        wordDetailLabel.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        meaningDetailLabel.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        
         memoTextField.layer.cornerRadius = 15
         memoTextField.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
         memoTextField.layer.masksToBounds = true
@@ -67,7 +68,7 @@ class WordDetailViewController: UIViewController {
     
     func webViewFunc(){
         guard let searchTerm = wordDetailLabel.text else {return}
-        guard let url = URL(string: "https://en.dict.naver.com/#/search?query=\(searchTerm)&") else {return}
+        guard let url = URL(string: "https://en.dict.naver.com/#/search?range=all&query=\(searchTerm)") else { return }
         let request = URLRequest(url: url)
         DispatchQueue.main.async {
             self.webView.load(request)

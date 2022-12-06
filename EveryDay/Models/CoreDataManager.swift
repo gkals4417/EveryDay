@@ -42,9 +42,9 @@ final class CoreDataManager {
     
     // MARK: - SAVE
     
-    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void){
+    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void) {
         if let context = context {
-            if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context){
+            if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 if let coreData = NSManagedObject(entity: entity, insertInto: context) as? CoreData {
                     coreData.savedWord = word
                     coreData.savedMeaning = meaning
@@ -69,7 +69,7 @@ final class CoreDataManager {
 
     // MARK: - DELETE
     
-    func deleteCoreData(data: CoreData, completion: @escaping () -> Void){
+    func deleteCoreData(data: CoreData, completion: @escaping () -> Void) {
         guard let date = data.savedDate else {
             completion()
             return
@@ -80,8 +80,8 @@ final class CoreDataManager {
             request.predicate = NSPredicate(format: "savedDate = %@", date as CVarArg)
             
             do {
-                if let fetched = try context.fetch(request) as? [CoreData]{
-                    if let target = fetched.first{
+                if let fetched = try context.fetch(request) as? [CoreData] {
+                    if let target = fetched.first {
                         context.delete(target)
                         if context.hasChanges {
                             do {
@@ -104,7 +104,7 @@ final class CoreDataManager {
 
     // MARK: - UPDATE
     
-    func updateCoreData(newCoreData: CoreData, completion: @escaping () -> Void){
+    func updateCoreData(newCoreData: CoreData, completion: @escaping () -> Void) {
         guard let date = newCoreData.savedDate else {
             completion()
             return
@@ -114,7 +114,7 @@ final class CoreDataManager {
             let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
             request.predicate = NSPredicate(format: "savedDate = %@", date as CVarArg)
             do {
-                if let fetched = try context.fetch(request) as? [CoreData]{
+                if let fetched = try context.fetch(request) as? [CoreData] {
                     if var target = fetched.first {
                         target = newCoreData
                         

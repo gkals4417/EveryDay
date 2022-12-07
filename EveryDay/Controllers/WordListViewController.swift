@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 import AVFoundation
 
-class WordListViewController: UIViewController {
+final class WordListViewController: UIViewController {
     
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var cellView: UIView!

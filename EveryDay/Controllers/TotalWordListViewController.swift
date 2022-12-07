@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class TotalWordListViewController: UIViewController {
+final class TotalWordListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     

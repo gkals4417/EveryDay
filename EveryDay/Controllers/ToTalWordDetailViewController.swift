@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class ToTalWordDetailViewController: UIViewController {
+final class ToTalWordDetailViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -50,7 +50,7 @@ class ToTalWordDetailViewController: UIViewController {
     private func appearanceFunc() {
         wordLabel.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
         meaningLabel.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
-        memoTextField.layer.cornerRadius = 15
+//        memoTextField.layer.cornerRadius = 15
         memoTextField.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
         memoTextField.layer.masksToBounds = true
         memoTextField.layer.borderWidth = 0.1

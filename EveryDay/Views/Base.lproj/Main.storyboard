@@ -138,7 +138,7 @@
                                             <constraint firstAttribute="height" constant="25" id="9h4-JF-ggZ"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="EdZ-VG-LlI"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>

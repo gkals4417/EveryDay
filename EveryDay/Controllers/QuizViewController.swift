@@ -9,7 +9,7 @@ import UIKit
 import HGCircularSlider
 import AVFoundation
 
-class QuizViewController: UIViewController {
+final class QuizViewController: UIViewController {
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerTextField: UITextField!
@@ -17,16 +17,17 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
+    
     private let appManager = EveryDayManager.shared
-    private var savedCoreArray: [CoreData] = []{
+    private var savedCoreArray: [CoreData] = [] {
         didSet {
             print("Quiz ViewController savedCoreArray changed \n \(savedCoreArray)")
         }
     }
     
-    var timer: Timer?
-    var isPaused: Bool = false
-    var currentTime: Int = 0
+    private var timer: Timer?
+    private var isPaused: Bool = false
+    private var currentTime: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class QuizViewController: UIViewController {
         
         initialFunc()
         appearanceFunc()
+        
     }
 
     private func initialFunc() {
@@ -47,17 +49,29 @@ class QuizViewController: UIViewController {
     private func appearanceFunc() {
         view.backgroundColor = .white
         
+        startButton.setTitle("시작", for: .normal)
+        startButton.setTitleColor(.black, for: .normal)
+        startButton.setTitleColor(.lightGray, for: .highlighted)
+        pauseButton.setTitle("일시정지", for: .normal)
+        pauseButton.setTitleColor(.black, for: .normal)
+        pauseButton.setTitleColor(.lightGray, for: .highlighted)
+        
         progress.backgroundColor = .clear
         progress.diskColor = .clear
         progress.trackColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
-        progress.trackFillColor = .black
+        progress.trackFillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         progress.backtrackLineWidth = 2
-        progress.thumbRadius = 9
+        progress.thumbRadius = 6
         progress.thumbLineWidth = 0
         progress.endThumbTintColor = .black
         progress.minimumValue = 0
         progress.maximumValue = 300
+        progress.diskFillColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
         
+        timeLabel.text = "원하는 시간(초)를 선택하세요."
+        answerTextField.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        answerTextField.layer.borderWidth = 0.1
+        answerTextField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         answerTextField.placeholder = "뜻을 입력하세요."
     }
     
@@ -81,7 +95,7 @@ class QuizViewController: UIViewController {
     @objc func updateProgressUI() {
         let value = progress.endPointValue
         let intValue = Int(value)
-        timeLabel.text = String(describing: intValue)
+        timeLabel.text = "\(String(describing: intValue)) 초"
         currentTime = intValue
     }
     
@@ -92,10 +106,10 @@ class QuizViewController: UIViewController {
         pauseTimer()
     }
     
-    @objc func updateTimer(){
+    @objc func updateTimer() {
         if 0 < currentTime {
             currentTime -= 1
-            timeLabel.text = String(describing: currentTime)
+            timeLabel.text = "\(String(describing: currentTime)) 초"
             progress.endPointValue = CGFloat(currentTime)
         } else {
             timer?.invalidate()
@@ -105,21 +119,24 @@ class QuizViewController: UIViewController {
         }
     }
 
-    func startTimer(){
+    func startTimer() {
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
     }
 
-    func pauseTimer(){
+    func pauseTimer() {
         if isPaused {
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             isPaused = false
+            pauseButton.setTitle("일시정지", for: .normal)
         } else {
             timer?.invalidate()
             isPaused = true
+            pauseButton.setTitle("다시시작", for: .normal)
         }
     }
+    
 }
 
 

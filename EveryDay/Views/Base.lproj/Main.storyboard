@@ -124,18 +124,106 @@
         <!--문제풀기-->
         <scene sceneID="mYc-gf-DyM">
             <objects>
-                <viewController id="mQI-Q8-Khq" customClass="QuizViewController" sceneMemberID="viewController">
+                <viewController id="mQI-Q8-Khq" customClass="QuizViewController" customModule="EveryDay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fna-by-9rN">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNp-Zh-zkR" customClass="CircularSlider" customModule="HGCircularSlider">
+                                <rect key="frame" x="50" y="147" width="290" height="290"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2C-iO-VNk">
+                                        <rect key="frame" x="95" y="132.66666666666669" width="100" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="9h4-JF-ggZ"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="EdZ-VG-LlI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="c2C-iO-VNk" firstAttribute="centerY" secondItem="LNp-Zh-zkR" secondAttribute="centerY" id="2AA-Gc-dye"/>
+                                    <constraint firstItem="c2C-iO-VNk" firstAttribute="centerX" secondItem="LNp-Zh-zkR" secondAttribute="centerX" id="Fg2-RV-1r7"/>
+                                    <constraint firstAttribute="width" secondItem="LNp-Zh-zkR" secondAttribute="height" multiplier="1:1" id="WHv-VG-Cn0"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TM9-ZD-RPv">
+                                <rect key="frame" x="50" y="557" width="290" height="110"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rl-qz-ng8">
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3Fz-CA-8QP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ns-sL-C36">
+                                        <rect key="frame" x="0.0" y="60" width="290" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="YRs-lf-U3z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="3Tf-gl-5rz">
+                                <rect key="frame" x="50" y="487" width="290" height="34.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvh-d4-mNR">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="startButtonTapped:" destination="mQI-Q8-Khq" eventType="touchUpInside" id="SNq-5J-qJb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NQ-CP-MWE">
+                                        <rect key="frame" x="165" y="0.0" width="125" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="pauseButtonTapped:" destination="mQI-Q8-Khq" eventType="touchUpInside" id="S1J-sW-5xV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hN9-eG-uq8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Tf-gl-5rz" firstAttribute="leading" secondItem="hN9-eG-uq8" secondAttribute="leading" constant="50" id="8az-2Z-8a5"/>
+                            <constraint firstItem="TM9-ZD-RPv" firstAttribute="leading" secondItem="hN9-eG-uq8" secondAttribute="leading" constant="50" id="Oie-Nc-8j7"/>
+                            <constraint firstItem="LNp-Zh-zkR" firstAttribute="leading" secondItem="hN9-eG-uq8" secondAttribute="leading" constant="50" id="PG8-gg-MJw"/>
+                            <constraint firstItem="TM9-ZD-RPv" firstAttribute="top" secondItem="LNp-Zh-zkR" secondAttribute="bottom" constant="120" id="Rj8-Wi-JGD"/>
+                            <constraint firstItem="hN9-eG-uq8" firstAttribute="trailing" secondItem="LNp-Zh-zkR" secondAttribute="trailing" constant="50" id="TVh-F5-Q29"/>
+                            <constraint firstItem="LNp-Zh-zkR" firstAttribute="top" secondItem="hN9-eG-uq8" secondAttribute="top" constant="100" id="ZDO-V7-0yf"/>
+                            <constraint firstItem="LNp-Zh-zkR" firstAttribute="centerX" secondItem="fna-by-9rN" secondAttribute="centerX" id="bkr-0o-9W4"/>
+                            <constraint firstItem="hN9-eG-uq8" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TM9-ZD-RPv" secondAttribute="bottom" constant="70" id="czC-Gg-y8d"/>
+                            <constraint firstItem="3Tf-gl-5rz" firstAttribute="centerX" secondItem="fna-by-9rN" secondAttribute="centerX" id="dBt-64-Ujz"/>
+                            <constraint firstItem="hN9-eG-uq8" firstAttribute="trailing" secondItem="3Tf-gl-5rz" secondAttribute="trailing" constant="50" id="seA-g5-ncF"/>
+                            <constraint firstItem="3Tf-gl-5rz" firstAttribute="top" secondItem="LNp-Zh-zkR" secondAttribute="bottom" constant="50" id="u0W-4l-4sU"/>
+                            <constraint firstItem="hN9-eG-uq8" firstAttribute="trailing" secondItem="TM9-ZD-RPv" secondAttribute="trailing" constant="50" id="x11-aI-ZbK"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="문제풀기" image="questionmark.folder.fill" catalog="system" id="f8y-K9-bbZ"/>
+                    <connections>
+                        <outlet property="answerTextField" destination="2ns-sL-C36" id="Xra-rf-148"/>
+                        <outlet property="pauseButton" destination="0NQ-CP-MWE" id="Mqz-Qg-IOc"/>
+                        <outlet property="progress" destination="LNp-Zh-zkR" id="yki-La-H7i"/>
+                        <outlet property="questionLabel" destination="3Rl-qz-ng8" id="F7G-jS-3De"/>
+                        <outlet property="startButton" destination="uvh-d4-mNR" id="Ee2-zf-6kd"/>
+                        <outlet property="timeLabel" destination="c2C-iO-VNk" id="XOU-aq-n6J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GlV-Z5-aS3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3175" y="926"/>
+            <point key="canvasLocation" x="3173.8461538461538" y="925.59241706161129"/>
         </scene>
         <!--To Tal Word Detail View Controller-->
         <scene sceneID="BPR-RM-Dib">

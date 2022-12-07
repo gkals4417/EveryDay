@@ -26,6 +26,7 @@
 		4DCD1EC9291B5F6400F51EF2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1EC8291B5F6400F51EF2 /* CoreDataManager.swift */; };
 		4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */; };
 		4DCD1ED2291B86D200F51EF2 /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */; };
+		4DCF170029403FB60070FD83 /* HGCircularSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 4DCF16FF29403FB60070FD83 /* HGCircularSlider */; };
 		4DD845642930961B007C2519 /* TotalWordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD845632930961B007C2519 /* TotalWordListViewController.swift */; };
 		4DD8456629309B9B007C2519 /* ToTalWordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8456529309B9B007C2519 /* ToTalWordDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D7419CA292F305300A5FCD0 /* FSCalendar in Frameworks */,
+				4DCF170029403FB60070FD83 /* HGCircularSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +155,7 @@
 			name = EveryDay;
 			packageProductDependencies = (
 				4D7419C9292F305300A5FCD0 /* FSCalendar */,
+				4DCF16FF29403FB60070FD83 /* HGCircularSlider */,
 			);
 			productName = EveryDay;
 			productReference = 4DCD1E68291A283000F51EF2 /* EveryDay.app */;
@@ -184,6 +187,7 @@
 			mainGroup = 4DCD1E5F291A283000F51EF2;
 			packageReferences = (
 				4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				4DCF16FE29403FB60070FD83 /* XCRemoteSwiftPackageReference "HGCircularSlider" */,
 			);
 			productRefGroup = 4DCD1E69291A283000F51EF2 /* Products */;
 			projectDirPath = "";
@@ -468,6 +472,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		4DCF16FE29403FB60070FD83 /* XCRemoteSwiftPackageReference "HGCircularSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HamzaGhazouani/HGCircularSlider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -475,6 +487,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D7419C8292F305300A5FCD0 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		4DCF16FF29403FB60070FD83 /* HGCircularSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DCF16FE29403FB60070FD83 /* XCRemoteSwiftPackageReference "HGCircularSlider" */;
+			productName = HGCircularSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
 

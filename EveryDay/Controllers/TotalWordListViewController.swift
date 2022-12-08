@@ -27,6 +27,7 @@ final class TotalWordListViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        savedCoreArray = appManager.getCoreDataArray()
         tableView.reloadData()
         tableView.separatorStyle = .none
     }

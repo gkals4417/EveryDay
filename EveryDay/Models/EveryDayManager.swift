@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol QuizInfoDelegate: AnyObject {
+    func getInfo() -> [Int]
+}
+
 final class EveryDayManager {
     
     private let coreDataManager = CoreDataManager.shared
@@ -15,6 +19,8 @@ final class EveryDayManager {
     static let shared = EveryDayManager()
     
     var coreDataArray: [CoreData] = []
+    
+    var delegate: QuizInfoDelegate?
     
     private init(){
         coreDataArray = coreDataManager.readCoreData()

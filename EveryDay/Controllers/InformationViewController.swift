@@ -9,21 +9,22 @@ import UIKit
 
 class InformationViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    let appManager = EveryDayManager.shared
 
-        // Do any additional setup after loading the view.
+    var receivedArray: [Int] = [] {
+        didSet {
+            print("receivedArray \(receivedArray)")
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
-    */
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        guard let temp = appManager.delegate?.getInfo() else { return }
+        receivedArray = temp
+    }
+    
 }

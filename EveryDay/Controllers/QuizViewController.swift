@@ -17,11 +17,27 @@ final class QuizViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
-    
+
     private let appManager = EveryDayManager.shared
     private var savedCoreArray: [CoreData] = [] {
         didSet {
             print("Quiz ViewController savedCoreArray changed \n \(savedCoreArray)")
+        }
+    }
+    private var tempArray: [CoreData] = [] {
+        didSet {
+            print("Randomized Temp Array Chanded \n \(tempArray)")
+        }
+    }
+    private var tempArrayMaxIndex: Int = 0
+    private var correctCount: Int = 0 {
+        didSet {
+            print("답을 맞췄습니다. : \(correctCount)")
+        }
+    }
+    private var incorrectCount: Int = 0 {
+        didSet {
+            print("답이 틀렸습니다. : \(incorrectCount)")
         }
     }
     
@@ -29,9 +45,13 @@ final class QuizViewController: UIViewController {
     private var isPaused: Bool = false
     private var currentTime: Int = 0
     
+    override func viewWillAppear(_ animated: Bool) {
+        savedCoreArray = appManager.getCoreDataArray()
+    }
+    
     override func viewDidLoad() {
+        appManager.delegate = self
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
         progress.addTarget(self, action: #selector(updateProgressUI), for: .valueChanged)
@@ -44,6 +64,7 @@ final class QuizViewController: UIViewController {
     private func initialFunc() {
         answerTextField.delegate = self
         savedCoreArray = appManager.getCoreDataArray()
+        answerTextField.isEnabled = false
     }
     
     private func appearanceFunc() {
@@ -120,6 +141,13 @@ final class QuizViewController: UIViewController {
     }
 
     func startTimer() {
+        correctCount = 0
+        incorrectCount = 0
+        tempArray = savedCoreArray.shuffled()
+        tempArrayMaxIndex = tempArray.count - 1
+        questionLabel.text = tempArray[tempArrayMaxIndex].savedWord
+        answerTextField.isEnabled = true
+        
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
@@ -144,10 +172,48 @@ extension QuizViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if tempArrayMaxIndex > 0 {
+            guard let answer = answerTextField.text else { return false }
+            if answer == tempArray[tempArrayMaxIndex].savedMeaning {
+                correctCount += 1
+            } else {
+                incorrectCount += 1
+            }
+            tempArrayMaxIndex -= 1
+            questionLabel.text = tempArray[tempArrayMaxIndex].savedWord
+            
+        } else {
+            questionLabel.text = tempArray[tempArrayMaxIndex].savedWord
+            guard let answer = answerTextField.text else { return false }
+            if answer == tempArray[tempArrayMaxIndex].savedMeaning {
+                correctCount += 1
+            } else {
+                incorrectCount += 1
+            }
+            
+            questionLabel.text = "맞춘 갯수 : \(correctCount),    틀린 갯수 : \(incorrectCount)"
+            tempArrayMaxIndex = tempArray.count - 1
+            answerTextField.isEnabled = false
+            timeLabel.text = "문제종료"
+            AudioServicesPlaySystemSound(4095)
+            timer?.invalidate()
+        }
+        
         answerTextField.text = ""
-        view.endEditing(true)
         return true
+    }
+    
+}
+
+extension QuizViewController: QuizInfoDelegate {
+    func getInfo() -> [Int] {
+        print(#function)
+        var array: [Int] = []
+        array.append(correctCount)
+        array.append(incorrectCount)
+        return array
     }
 }

@@ -27,6 +27,7 @@
 		4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */; };
 		4DCD1ED2291B86D200F51EF2 /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */; };
 		4DCF170029403FB60070FD83 /* HGCircularSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 4DCF16FF29403FB60070FD83 /* HGCircularSlider */; };
+		4DCF170A2941CB6A0070FD83 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCF17092941CB6A0070FD83 /* InfoCell.swift */; };
 		4DD845642930961B007C2519 /* TotalWordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD845632930961B007C2519 /* TotalWordListViewController.swift */; };
 		4DD8456629309B9B007C2519 /* ToTalWordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD8456529309B9B007C2519 /* ToTalWordDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		4DCD1EC8291B5F6400F51EF2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryDayManager.swift; sourceTree = "<group>"; };
 		4DCD1ED1291B86D200F51EF2 /* WordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
+		4DCF17092941CB6A0070FD83 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		4DD845632930961B007C2519 /* TotalWordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWordListViewController.swift; sourceTree = "<group>"; };
 		4DD8456529309B9B007C2519 /* ToTalWordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTalWordDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				4D6093952938636100B82E6D /* WordListCell.xib */,
 				4D609398293864B500B82E6D /* TotalWordListCell.swift */,
 				4D609399293864B500B82E6D /* TotalWordListCell.xib */,
+				4DCF17092941CB6A0070FD83 /* InfoCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */,
 				4DCD1ED2291B86D200F51EF2 /* WordDetailViewController.swift in Sources */,
 				4DCD1E70291A283000F51EF2 /* WordListViewController.swift in Sources */,
+				4DCF170A2941CB6A0070FD83 /* InfoCell.swift in Sources */,
 				4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */,
 				4DCD1E6C291A283000F51EF2 /* AppDelegate.swift in Sources */,
 				4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */,

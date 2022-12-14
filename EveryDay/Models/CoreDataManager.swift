@@ -66,6 +66,26 @@ final class CoreDataManager {
         completion()
     }
 
+    func saveQuizCoreData(correct: Double, incorrect: Double, completion: @escaping () -> Void) {
+        if let context = context {
+            if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
+                if let coreData = NSManagedObject(entity: entity, insertInto: context) as? CoreData {
+                    coreData.quizCorrect = correct
+                    coreData.quizIncorrect = incorrect
+                    if context.hasChanges {
+                        do {
+                            try context.save()
+                            completion()
+                        } catch {
+                            print(error)
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+        completion()
+    }
 
     // MARK: - DELETE
     

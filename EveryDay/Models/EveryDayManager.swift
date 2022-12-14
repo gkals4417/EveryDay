@@ -41,6 +41,14 @@ final class EveryDayManager {
         
     }
     
+    func saveQuizCoreData(correct: Double, incorrect: Double, completion: @escaping () -> Void) {
+        coreDataManager.saveQuizCoreData(correct: correct, incorrect: incorrect) {
+            completion()
+            self.coreDataArray = self.coreDataManager.readCoreData()
+        }
+        print("\(#function) : QuizCoreData Saved")
+    }
+    
     func updateCoreData(newCoreData: CoreData, completion: @escaping () -> Void) {
         coreDataManager.updateCoreData(newCoreData: newCoreData) {
             completion()

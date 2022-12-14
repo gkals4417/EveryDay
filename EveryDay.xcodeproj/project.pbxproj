@@ -13,8 +13,9 @@
 		4D60939B293864B500B82E6D /* TotalWordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D609399293864B500B82E6D /* TotalWordListCell.xib */; };
 		4D6093B2293F22A700B82E6D /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6093B1293F22A700B82E6D /* QuizViewController.swift */; };
 		4D6093B4293F22E100B82E6D /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6093B3293F22E100B82E6D /* InformationViewController.swift */; };
-		4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */; };
-		4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */; };
+		4D61792C294975380043CAA5 /* CoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D61792A294975380043CAA5 /* CoreData+CoreDataClass.swift */; };
+		4D61792D294975380043CAA5 /* CoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D61792B294975380043CAA5 /* CoreData+CoreDataProperties.swift */; };
+		4D61792F2949985C0043CAA5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D61792E2949985C0043CAA5 /* Constants.swift */; };
 		4D7419CA292F305300A5FCD0 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7419C9292F305300A5FCD0 /* FSCalendar */; };
 		4DCD1E6C291A283000F51EF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6B291A283000F51EF2 /* AppDelegate.swift */; };
 		4DCD1E6E291A283000F51EF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1E6D291A283000F51EF2 /* SceneDelegate.swift */; };
@@ -38,8 +39,9 @@
 		4D609399293864B500B82E6D /* TotalWordListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalWordListCell.xib; sourceTree = "<group>"; };
 		4D6093B1293F22A700B82E6D /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		4D6093B3293F22E100B82E6D /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4D61792A294975380043CAA5 /* CoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4D61792B294975380043CAA5 /* CoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4D61792E2949985C0043CAA5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4DCD1E68291A283000F51EF2 /* EveryDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCD1E6B291A283000F51EF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DCD1E6D291A283000F51EF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				4DCD1E79291A283100F51EF2 /* LaunchScreen.storyboard */,
 				4DCD1E7C291A283100F51EF2 /* Info.plist */,
 				4DCD1E74291A283000F51EF2 /* EveryDay.xcdatamodeld */,
+				4D61792E2949985C0043CAA5 /* Constants.swift */,
 			);
 			path = EveryDay;
 			sourceTree = "<group>";
@@ -104,8 +107,8 @@
 		4DCD1ECA291B6E0C00F51EF2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D6A84E929236FCA0050E38C /* CoreData+CoreDataClass.swift */,
-				4D6A84EA29236FCA0050E38C /* CoreData+CoreDataProperties.swift */,
+				4D61792A294975380043CAA5 /* CoreData+CoreDataClass.swift */,
+				4D61792B294975380043CAA5 /* CoreData+CoreDataProperties.swift */,
 				4DCD1EC8291B5F6400F51EF2 /* CoreDataManager.swift */,
 				4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */,
 			);
@@ -220,19 +223,20 @@
 			files = (
 				4D60939A293864B500B82E6D /* TotalWordListCell.swift in Sources */,
 				4D6093B2293F22A700B82E6D /* QuizViewController.swift in Sources */,
-				4D6A84EB29236FCA0050E38C /* CoreData+CoreDataClass.swift in Sources */,
 				4DCD1ED2291B86D200F51EF2 /* WordDetailViewController.swift in Sources */,
 				4DCD1E70291A283000F51EF2 /* WordListViewController.swift in Sources */,
-				4D6A84EC29236FCA0050E38C /* CoreData+CoreDataProperties.swift in Sources */,
 				4DCD1E6C291A283000F51EF2 /* AppDelegate.swift in Sources */,
 				4DCD1ECE291B6EF800F51EF2 /* EveryDayManager.swift in Sources */,
 				4DCD1E76291A283000F51EF2 /* EveryDay.xcdatamodeld in Sources */,
+				4D61792F2949985C0043CAA5 /* Constants.swift in Sources */,
 				4D6093962938636100B82E6D /* WordListCell.swift in Sources */,
 				4DCD1EC9291B5F6400F51EF2 /* CoreDataManager.swift in Sources */,
 				4DD845642930961B007C2519 /* TotalWordListViewController.swift in Sources */,
+				4D61792C294975380043CAA5 /* CoreData+CoreDataClass.swift in Sources */,
 				4DD8456629309B9B007C2519 /* ToTalWordDetailViewController.swift in Sources */,
 				4DCD1E6E291A283000F51EF2 /* SceneDelegate.swift in Sources */,
 				4D6093B4293F22E100B82E6D /* InformationViewController.swift in Sources */,
+				4D61792D294975380043CAA5 /* CoreData+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

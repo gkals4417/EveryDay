@@ -77,13 +77,13 @@ final class WordListViewController: UIViewController {
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
         calendarView.appearance.subtitleTodayColor = .black
         calendarView.appearance.titleTodayColor = .black
-        calendarView.appearance.selectionColor = .black
+        calendarView.appearance.selectionColor = Constants.customBlueColor
         calendarView.appearance.headerTitleColor = .black
         calendarView.appearance.titleWeekendColor = .red
         calendarView.appearance.todayColor = .white
-        calendarView.appearance.eventDefaultColor = .black
-        calendarView.appearance.eventSelectionColor = .black
-        calendarView.appearance.borderRadius = 0.1
+        calendarView.appearance.eventDefaultColor = Constants.customBlueColor
+        calendarView.appearance.eventSelectionColor = Constants.customBlueColor
+        calendarView.appearance.borderRadius = 0.5
         calendarView.swipeToChooseGesture.isEnabled = true
         
         calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
@@ -98,9 +98,6 @@ final class WordListViewController: UIViewController {
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: "추가", preferredStyle: .alert)
-        alert.view.tintColor = .black
-        alert.view.backgroundColor = .lightGray
-        alert.view.layer.cornerRadius = 20
         let ok = UIAlertAction(title: "저장", style: .default) { UIAlertAction in
                 self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
                 self.savedCoreArray = self.appManager.getCoreDataArray()

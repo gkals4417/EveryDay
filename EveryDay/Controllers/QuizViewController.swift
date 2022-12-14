@@ -65,6 +65,7 @@ final class QuizViewController: UIViewController {
         answerTextField.delegate = self
         savedCoreArray = appManager.getCoreDataArray()
         answerTextField.isEnabled = false
+        timeLabel.textColor = Constants.customGrayColor
     }
     
     private func appearanceFunc() {
@@ -72,25 +73,25 @@ final class QuizViewController: UIViewController {
         
         startButton.setTitle("시작", for: .normal)
         startButton.setTitleColor(.black, for: .normal)
-        startButton.setTitleColor(.lightGray, for: .highlighted)
+        startButton.setTitleColor(Constants.customBlueColor, for: .highlighted)
         pauseButton.setTitle("일시정지", for: .normal)
         pauseButton.setTitleColor(.black, for: .normal)
-        pauseButton.setTitleColor(.lightGray, for: .highlighted)
+        pauseButton.setTitleColor(Constants.customBlueColor, for: .highlighted)
         
         progress.backgroundColor = .clear
         progress.diskColor = .clear
-        progress.trackColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
-        progress.trackFillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        progress.trackColor = Constants.customLightGrayColor
+        progress.trackFillColor = Constants.customBlueColor
         progress.backtrackLineWidth = 2
         progress.thumbRadius = 6
         progress.thumbLineWidth = 0
-        progress.endThumbTintColor = .black
+        progress.endThumbTintColor = Constants.customBlueColor
         progress.minimumValue = 0
         progress.maximumValue = 300
-        progress.diskFillColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        progress.diskFillColor = Constants.customLightGrayColor
         
         timeLabel.text = "원하는 시간(초)를 선택하세요."
-        answerTextField.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        answerTextField.backgroundColor = Constants.customLightGrayColor
         answerTextField.layer.borderWidth = 0.1
         answerTextField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         answerTextField.placeholder = "뜻을 입력하세요."
@@ -141,15 +142,24 @@ final class QuizViewController: UIViewController {
     }
 
     func startTimer() {
-        correctCount = 0
-        incorrectCount = 0
-        tempArray = savedCoreArray.shuffled()
-        tempArrayMaxIndex = tempArray.count - 1
-        questionLabel.text = tempArray[tempArrayMaxIndex].savedWord
-        answerTextField.isEnabled = true
         
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        if savedCoreArray.isEmpty {
+            timeLabel.text = "저장된 단어가 없습니다."
+            progress.endPointValue = 0.0
+            answerTextField.isEnabled = false
+        } else {
+            correctCount = 0
+            incorrectCount = 0
+            tempArray = savedCoreArray.shuffled()
+            tempArrayMaxIndex = tempArray.count - 1
+            questionLabel.text = tempArray[tempArrayMaxIndex].savedWord
+            answerTextField.isEnabled = true
+            
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        }
+        
+        
         
     }
 

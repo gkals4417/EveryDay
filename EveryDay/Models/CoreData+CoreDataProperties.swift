@@ -2,7 +2,7 @@
 //  CoreData+CoreDataProperties.swift
 //  EveryDay
 //
-//  Created by Hamin Jeong on 2022/11/15.
+//  Created by Hamin Jeong on 2022/12/14.
 //
 //
 
@@ -17,9 +17,11 @@ extension CoreData {
     }
 
     @NSManaged public var savedDate: Date?
+    @NSManaged public var savedDetailMemo: String?
     @NSManaged public var savedMeaning: String?
     @NSManaged public var savedWord: String?
-    @NSManaged public var savedDetailMemo: String?
+    @NSManaged public var quizCorrect: Double
+    @NSManaged public var quizIncorrect: Double
 
 }
 

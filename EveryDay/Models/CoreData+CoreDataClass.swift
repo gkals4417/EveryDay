@@ -2,7 +2,7 @@
 //  CoreData+CoreDataClass.swift
 //  EveryDay
 //
-//  Created by Hamin Jeong on 2022/11/15.
+//  Created by Hamin Jeong on 2022/12/14.
 //
 //
 

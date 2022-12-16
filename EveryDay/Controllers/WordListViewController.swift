@@ -40,7 +40,7 @@ final class WordListViewController: UIViewController {
         super.viewDidLoad()
         initialFunc()
         appearanceFunc()
-        tableView.register(UINib(nibName: "WordListCell", bundle: nil), forCellReuseIdentifier: "identifierWordListCell")
+        tableView.register(UINib(nibName: "WordListCell", bundle: nil), forCellReuseIdentifier: Identifier.wordListCell)
     }
 
     private func initialFunc() {
@@ -128,7 +128,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "identifierWordListCell", for: indexPath) as! WordListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.wordListCell, for: indexPath) as! WordListCell
         cell.wordLabel.text = calendarSelectArray[indexPath.row].savedWord
         cell.meaningLabel.text = calendarSelectArray[indexPath.row].savedMeaning
         cell.selectionStyle = .none
@@ -141,11 +141,11 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toWordDetailVC", sender: indexPath)
+        performSegue(withIdentifier: Identifier.toWordDetailVC, sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWordDetailVC" {
+        if segue.identifier == Identifier.toWordDetailVC {
             let detailVC = segue.destination as! WordDetailViewController
             guard let indexPath = sender as? IndexPath else { return }
             detailVC.tempArray = calendarSelectArray[indexPath.row]

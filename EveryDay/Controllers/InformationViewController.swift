@@ -7,7 +7,8 @@
 
 import UIKit
 import HGCircularSlider
-class InformationViewController: UIViewController {
+
+final class InformationViewController: UIViewController {
 
     @IBOutlet weak var totalCountLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
@@ -24,7 +25,6 @@ class InformationViewController: UIViewController {
             print("receivedArray \(receivedArray)")
         }
     }
-    let menuArray = ["총 단어 갯수", "문제 평점", "제작 정보", "아이콘"]
     private var savedCoreArray: [CoreData] = [] {
         didSet {
             print("Info ViewController savedCoreArray changed \n \(savedCoreArray)")
@@ -51,7 +51,7 @@ class InformationViewController: UIViewController {
         rateLogicFunc()
     }
     
-    func rateLogicFunc() {
+    private func rateLogicFunc() {
         guard let temp = appManager.delegate?.getInfo() else { return }
         receivedArray = temp
         

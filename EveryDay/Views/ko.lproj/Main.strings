@@ -1,0 +1,45 @@
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "0NQ-CP-MWE"; */
+"0NQ-CP-MWE.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "0NQ-CP-MWE"; */
+"0NQ-CP-MWE.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "캘린더"; ObjectID = "4Wd-cu-F7H"; */
+"4Wd-cu-F7H.title" = "캘린더";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BHk-f6-tVI"; */
+"BHk-f6-tVI.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "오늘"; ObjectID = "EnD-a0-A0f"; */
+"EnD-a0-A0f.configuration.title" = "오늘";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "EnD-a0-A0f"; */
+"EnD-a0-A0f.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TVh-gc-m3U"; */
+"TVh-gc-m3U.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bCe-BI-ZwA"; */
+"bCe-BI-ZwA.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c2C-iO-VNk"; */
+"c2C-iO-VNk.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "문제풀기"; ObjectID = "f8y-K9-bbZ"; */
+"f8y-K9-bbZ.title" = "문제풀기";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hwK-A2-o7A"; */
+"hwK-A2-o7A.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "정보"; ObjectID = "p9o-t0-op4"; */
+"p9o-t0-op4.title" = "정보";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "uvh-d4-mNR"; */
+"uvh-d4-mNR.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uvh-d4-mNR"; */
+"uvh-d4-mNR.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "단어목록"; ObjectID = "vds-4W-LeV"; */
+"vds-4W-LeV.title" = "단어목록";

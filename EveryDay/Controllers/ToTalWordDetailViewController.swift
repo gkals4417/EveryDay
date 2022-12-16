@@ -48,10 +48,10 @@ final class ToTalWordDetailViewController: UIViewController {
     }
     
     private func appearanceFunc() {
-        wordLabel.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
-        meaningLabel.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        wordLabel.backgroundColor = Constants.customLightGrayColor
+        meaningLabel.backgroundColor = Constants.customLightGrayColor
 //        memoTextField.layer.cornerRadius = 15
-        memoTextField.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 0.5)
+        memoTextField.backgroundColor = Constants.customLightGrayColor
         memoTextField.layer.masksToBounds = true
         memoTextField.layer.borderWidth = 0.1
         memoTextField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -71,7 +71,7 @@ final class ToTalWordDetailViewController: UIViewController {
         
     func webViewFunc(){
         guard let searchTerm = wordLabel.text else {return}
-        guard let url = URL(string: "https://en.dict.naver.com/#/search?range=all&query=\(searchTerm)") else {return}
+        guard let url = URL(string: Constants.naverURL(searchTerm: searchTerm)) else {return}
         let request = URLRequest(url: url)
         DispatchQueue.main.async {
             self.webView.load(request)

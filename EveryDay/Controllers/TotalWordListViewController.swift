@@ -22,7 +22,7 @@ final class TotalWordListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "TotalWordListCell", bundle: nil), forCellReuseIdentifier: "identifierTotalWordListCell")
+        tableView.register(UINib(nibName: "TotalWordListCell", bundle: nil), forCellReuseIdentifier: Identifier.totalWordListCell)
         initialFunc()
     }
 
@@ -59,7 +59,7 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "identifierTotalWordListCell", for: indexPath) as! TotalWordListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.totalWordListCell, for: indexPath) as! TotalWordListCell
         cell.totalWordLabel.text = savedCoreArray[indexPath.row].savedWord
         cell.totalWordMeaningLabel.text = savedCoreArray[indexPath.row].savedMeaning
         cell.selectionStyle = .none
@@ -68,11 +68,11 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toTotalWordDetailVC", sender: indexPath)
+        performSegue(withIdentifier: Identifier.toTotalWordDetailVC, sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toTotalWordDetailVC" {
+        if segue.identifier == Identifier.toTotalWordDetailVC {
             let totalDetailVC = segue.destination as! ToTalWordDetailViewController
             guard let indexPath = sender as? IndexPath else {return}
             totalDetailVC.tempArray = savedCoreArray[indexPath.row]

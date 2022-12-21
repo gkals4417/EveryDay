@@ -10,15 +10,18 @@ import AVFoundation
 
 final class TotalWordListViewController: UIViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     private let appManager = EveryDayManager.shared
     private let refreshController: UIRefreshControl = UIRefreshControl()
+    private let searchController = UISearchController()
     private var savedCoreArray: [CoreData] = [] {
         didSet {
             print("Total ViewController savedCoreArray changed \n \(savedCoreArray)")
         }
     }
+    private var filteredArray: [CoreData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,7 @@ final class TotalWordListViewController: UIViewController {
     }
     
     func initialFunc() {
+        searchController.searchResultsUpdater = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.refreshControl = refreshController
@@ -103,5 +107,11 @@ extension TotalWordListViewController: UITableViewDelegate, UITableViewDataSourc
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
         return header
+    }
+}
+
+extension TotalWordListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }

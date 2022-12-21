@@ -24,6 +24,7 @@ final class WordListViewController: UIViewController {
             print("savedCoreArray Changed \n \(savedCoreArray)")
         }
     }
+    
     private var calendarSelectArray: [CoreData] = [] {
         didSet {
             print("calendarSelectArray Changed \n \(calendarSelectArray)")

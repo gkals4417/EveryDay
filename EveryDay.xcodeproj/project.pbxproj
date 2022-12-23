@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D228B3229556429006D14F6 /* BMHANNAPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D228B2F29556287006D14F6 /* BMHANNAPro.ttf */; };
+		4D228B3429556A2A006D14F6 /* BMHANNAAir_ttf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D228B3329556A2A006D14F6 /* BMHANNAAir_ttf.ttf */; };
 		4D6093962938636100B82E6D /* WordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6093942938636100B82E6D /* WordListCell.swift */; };
 		4D6093972938636100B82E6D /* WordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6093952938636100B82E6D /* WordListCell.xib */; };
 		4D60939A293864B500B82E6D /* TotalWordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D609398293864B500B82E6D /* TotalWordListCell.swift */; };
@@ -33,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D228B2F29556287006D14F6 /* BMHANNAPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAPro.ttf; sourceTree = "<group>"; };
+		4D228B3129556366006D14F6 /* EveryDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EveryDay.entitlements; sourceTree = "<group>"; };
+		4D228B3329556A2A006D14F6 /* BMHANNAAir_ttf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAAir_ttf.ttf; sourceTree = "<group>"; };
 		4D6093942938636100B82E6D /* WordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListCell.swift; sourceTree = "<group>"; };
 		4D6093952938636100B82E6D /* WordListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordListCell.xib; sourceTree = "<group>"; };
 		4D609398293864B500B82E6D /* TotalWordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWordListCell.swift; sourceTree = "<group>"; };
@@ -91,6 +96,9 @@
 		4DCD1E6A291A283000F51EF2 /* EveryDay */ = {
 			isa = PBXGroup;
 			children = (
+				4D228B3129556366006D14F6 /* EveryDay.entitlements */,
+				4D228B2F29556287006D14F6 /* BMHANNAPro.ttf */,
+				4D228B3329556A2A006D14F6 /* BMHANNAAir_ttf.ttf */,
 				4DCD1ECC291B6E3000F51EF2 /* Controllers */,
 				4DCD1ECB291B6E1B00F51EF2 /* Views */,
 				4DCD1ECA291B6E0C00F51EF2 /* Models */,
@@ -211,7 +219,9 @@
 				4D6093972938636100B82E6D /* WordListCell.xib in Resources */,
 				4DCD1E78291A283100F51EF2 /* Assets.xcassets in Resources */,
 				4DCD1E73291A283000F51EF2 /* Main.storyboard in Resources */,
+				4D228B3229556429006D14F6 /* BMHANNAPro.ttf in Resources */,
 				4D60939B293864B500B82E6D /* TotalWordListCell.xib in Resources */,
+				4D228B3429556A2A006D14F6 /* BMHANNAAir_ttf.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EveryDay/EveryDay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5566XK43XC;
@@ -417,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EveryDay/EveryDay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5566XK43XC;

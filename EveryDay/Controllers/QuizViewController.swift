@@ -71,6 +71,14 @@ final class QuizViewController: UIViewController {
     private func appearanceFunc() {
         view.backgroundColor = .white
         
+        DispatchQueue.main.async {
+//            self.startButton.titleLabel?.font = UIFont(name: "BMHANNAPro", size: 15)
+//            self.pauseButton.titleLabel?.font = UIFont(name: "BMHANNAPro", size: 15)
+            self.questionLabel.font = UIFont(name: "BMHANNAPro", size: 15)
+            self.timeLabel.font = UIFont(name: "BMHANNAPro", size: 20)
+            self.answerTextField.font = UIFont(name: "BMHANNAPro", size: 15)
+        }
+        
         startButton.setTitle("시작", for: .normal)
         startButton.setTitleColor(.black, for: .normal)
         startButton.setTitleColor(Constants.customBlueColor, for: .highlighted)

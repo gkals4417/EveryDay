@@ -21,6 +21,8 @@ class TotalWordListCell: UITableViewCell {
         contentView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         totalWordLabel.textColor = .white
         totalWordMeaningLabel.textColor = .white
+        totalWordLabel.font = UIFont(name: "BMHANNAPro", size: 20)
+        totalWordMeaningLabel.font = UIFont(name: "BMHANNAPro", size: 20)
     }
     
     override func awakeFromNib() {

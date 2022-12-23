@@ -47,6 +47,10 @@ final class WordDetailViewController: UIViewController {
         wordDetailLabel.backgroundColor = Constants.customLightGrayColor
         meaningDetailLabel.backgroundColor = Constants.customLightGrayColor
         
+        wordDetailLabel.font = UIFont(name: "BMHANNAPro", size: 30)
+        meaningDetailLabel.font = UIFont(name: "BMHANNAPro", size: 25)
+        memoTextField.font = UIFont(name: "BMHANNAPro", size: 20)
+        
 //        memoTextField.layer.cornerRadius = 15
         memoTextField.backgroundColor = Constants.customLightGrayColor
         memoTextField.layer.masksToBounds = true

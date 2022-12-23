@@ -45,6 +45,7 @@ final class InformationViewController: UIViewController {
     private func initialFunc() {
         developerImageView.image = UIImage(named: "myCharacter.png")
         savedCoreArray = appManager.getCoreDataArray()
+        rateLabel.font = UIFont(name: "BMHANNAPro", size: 20)
         rateLabel.textColor = .black
         totalCountLabel.textColor = .white
         totalCountLabel.text = "\(savedCoreArray.count) 개 단어 저장됨"
@@ -57,7 +58,7 @@ final class InformationViewController: UIViewController {
         
         if savedCoreArray.count == 0 {
             rateLabel.text = "저장된 단어가 없습니다."
-            rateLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+//            rateLabel.font = UIFont(name: "BMHANNAPro", size: 15)
             progress.endPointValue = 0.0
         } else {
             let percent = 100 * (Double(receivedArray[0]) / (Double(receivedArray[0] + receivedArray[1])))
@@ -65,7 +66,7 @@ final class InformationViewController: UIViewController {
             
             if receivedArray[0] + receivedArray[1] == 0 {
                 rateLabel.text = "문제를 푸세요."
-                rateLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+//                rateLabel.font = UIFont(name: "BMHANNAPro", size: 15)
             } else {
                 rateLabel.text = "\(String(roundPercent)) %"
             }
@@ -113,7 +114,7 @@ final class InformationViewController: UIViewController {
         progress.isUserInteractionEnabled = false
         progress.endPointValue = 0.3
         
-        totalCountLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+        totalCountLabel.font = UIFont(name: "BMHANNAPro", size: 20)
         
     }
     

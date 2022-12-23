@@ -22,6 +22,8 @@ class WordListCell: UITableViewCell {
         contentView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         meaningLabel.textColor = .white
         wordLabel.textColor = .white
+        meaningLabel.font = UIFont(name: "BMHANNAPro", size: 20)
+        wordLabel.font = UIFont(name: "BMHANNAPro", size: 20)
     }
     
     override func awakeFromNib() {

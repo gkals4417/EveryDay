@@ -32,6 +32,7 @@ final class WordListViewController: UIViewController {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         calendarView.reloadData()
         tableView.reloadData()
@@ -74,6 +75,14 @@ final class WordListViewController: UIViewController {
         todayButton.setTitle("오늘", for: .normal)
         todayButton.setTitleColor(.black, for: .normal)
         todayButton.setTitleColor(.lightGray, for: .highlighted)
+        DispatchQueue.main.async {
+            self.todayButton.titleLabel?.font = UIFont(name: "BMHANNAAir", size: 15)
+        }
+        
+        calendarView.appearance.titleFont = UIFont(name: "BMHANNAAir", size: 15)
+        calendarView.appearance.weekdayFont = UIFont(name: "BMHANNAAir", size: 15)
+        calendarView.appearance.subtitleFont = UIFont(name: "BMHANNAAir", size: 10)
+        calendarView.appearance.headerTitleFont = UIFont(name: "BMHANNAAir", size: 20)
         
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
         calendarView.appearance.subtitleTodayColor = .black
@@ -154,16 +163,12 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let imageView = UIImageView()
-        let myImage: UIImage = UIImage(named: "LIST")!
-        imageView.image = myImage
-        
-        let header = UIView()
+
+        let header = UILabel()
+        header.text = "   LIST"
+        header.font = UIFont(name: "BMHANNAAir", size: 20)
         header.backgroundColor = .white
-        header.addSubview(imageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
+
         return header
     }
 }

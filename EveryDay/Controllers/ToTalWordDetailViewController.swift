@@ -50,6 +50,10 @@ final class ToTalWordDetailViewController: UIViewController {
     private func appearanceFunc() {
         wordLabel.backgroundColor = Constants.customLightGrayColor
         meaningLabel.backgroundColor = Constants.customLightGrayColor
+        
+        wordLabel.font = UIFont(name: "BMHANNAPro", size: 30)
+        meaningLabel.font = UIFont(name: "BMHANNAPro", size: 25)
+        memoTextField.font = UIFont(name: "BMHANNAPro", size: 20)
 //        memoTextField.layer.cornerRadius = 15
         memoTextField.backgroundColor = Constants.customLightGrayColor
         memoTextField.layer.masksToBounds = true

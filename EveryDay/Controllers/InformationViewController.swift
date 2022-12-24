@@ -17,7 +17,8 @@ final class InformationViewController: UIViewController {
     @IBOutlet weak var thirdView: UIView!
     @IBOutlet weak var fourthView: UIView!
     @IBOutlet weak var progress: CircularSlider!
-    
+    @IBOutlet weak var developerLabel: UILabel!
+
     let appManager = EveryDayManager.shared
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var receivedArray: [Int] = [] {
@@ -115,7 +116,9 @@ final class InformationViewController: UIViewController {
         progress.endPointValue = 0.3
         
         totalCountLabel.font = UIFont(name: "BMHANNAPro", size: 20)
-        
+        developerLabel.font = UIFont(name: "BMHANNAAir", size: 20)
+        developerLabel.textAlignment = .center
+        developerLabel.text = "개발자 정보"
     }
     
     func setupGesture() {
@@ -126,7 +129,7 @@ final class InformationViewController: UIViewController {
     
     @objc func touchUpImageView() {
         print("이미지터치됨")
-        let alert = UIAlertController(title: "개발자 정보", message: "Made by Pulsar", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Made by Pulsar", message: "gkals4417@icloud.com", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default)
         alert.addAction(action)
         present(alert, animated: true)

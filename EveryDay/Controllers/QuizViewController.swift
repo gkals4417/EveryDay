@@ -40,6 +40,8 @@ final class QuizViewController: UIViewController {
             print("답이 틀렸습니다. : \(incorrectCount)")
         }
     }
+    private var correctWord: [String] = []
+    private var incorrectWord: [String] = []
     
     private var timer: Timer?
     private var isPaused: Bool = false
@@ -197,8 +199,10 @@ extension QuizViewController: UITextFieldDelegate {
             guard let answer = answerTextField.text else { return false }
             if answer == tempArray[tempArrayMaxIndex].savedMeaning {
                 correctCount += 1
+                correctWord.append(answer)
             } else {
                 incorrectCount += 1
+                incorrectWord.append(answer)
             }
             tempArrayMaxIndex -= 1
             questionLabel.text = tempArray[tempArrayMaxIndex].savedWord
@@ -208,8 +212,10 @@ extension QuizViewController: UITextFieldDelegate {
             guard let answer = answerTextField.text else { return false }
             if answer == tempArray[tempArrayMaxIndex].savedMeaning {
                 correctCount += 1
+                correctWord.append(answer)
             } else {
                 incorrectCount += 1
+                incorrectWord.append(answer)
             }
             
             questionLabel.text = "맞춘 갯수 : \(correctCount),    틀린 갯수 : \(incorrectCount)"
@@ -233,5 +239,13 @@ extension QuizViewController: QuizInfoDelegate {
         array.append(correctCount)
         array.append(incorrectCount)
         return array
+    }
+    
+    func getQuizCorrectData() -> [String] {
+        return correctWord
+    }
+    
+    func getQuizIncorrectData() -> [String] {
+        return incorrectWord
     }
 }

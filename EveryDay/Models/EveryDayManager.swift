@@ -10,6 +10,8 @@ import CoreData
 
 protocol QuizInfoDelegate: AnyObject {
     func getInfo() -> [Int]
+    func getQuizCorrectData() -> [String]
+    func getQuizIncorrectData() -> [String]
 }
 
 final class EveryDayManager {

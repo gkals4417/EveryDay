@@ -18,7 +18,10 @@ final class InformationViewController: UIViewController {
     @IBOutlet weak var fourthView: UIView!
     @IBOutlet weak var progress: CircularSlider!
     @IBOutlet weak var developerLabel: UILabel!
-
+    @IBOutlet weak var myCorrectAnswerLabel: UILabel!
+    @IBOutlet weak var myWrongAnswerLabel: UILabel!
+    
+    
     let appManager = EveryDayManager.shared
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var receivedArray: [Int] = [] {
@@ -31,6 +34,8 @@ final class InformationViewController: UIViewController {
             print("Info ViewController savedCoreArray changed \n \(savedCoreArray)")
         }
     }
+    var receivedCorrectWordArray: [String] = []
+    var receivedIncorrectWordArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,17 +53,28 @@ final class InformationViewController: UIViewController {
         savedCoreArray = appManager.getCoreDataArray()
         rateLabel.font = UIFont(name: "BMHANNAPro", size: 20)
         rateLabel.textColor = .black
+        myCorrectAnswerLabel.font = UIFont(name: "BMHANNAPro", size: 20)
+        myCorrectAnswerLabel.textColor = .white
+        myWrongAnswerLabel.font = UIFont(name: "BMHANNAPro", size: 20)
+        myWrongAnswerLabel.textColor = .white
         totalCountLabel.textColor = .white
         totalCountLabel.text = "\(savedCoreArray.count) 개 단어 저장됨"
         rateLogicFunc()
     }
     
     private func rateLogicFunc() {
+        guard let receivedCorrectTemp = appManager.delegate?.getQuizCorrectData() else { return }
+        guard let receivedIncorrectTemp = appManager.delegate?.getQuizIncorrectData() else { return }
+        
+        receivedCorrectWordArray = receivedCorrectTemp
+        receivedIncorrectWordArray = receivedIncorrectTemp
+        
         guard let temp = appManager.delegate?.getInfo() else { return }
         receivedArray = temp
         
         if savedCoreArray.count == 0 {
             rateLabel.text = "저장된 단어가 없습니다."
+            myCorrectAnswerLabel.text = ""
 //            rateLabel.font = UIFont(name: "BMHANNAPro", size: 15)
             progress.endPointValue = 0.0
         } else {
@@ -67,9 +83,12 @@ final class InformationViewController: UIViewController {
             
             if receivedArray[0] + receivedArray[1] == 0 {
                 rateLabel.text = "문제를 푸세요."
+                myCorrectAnswerLabel.text = "문제를 푸세요."
 //                rateLabel.font = UIFont(name: "BMHANNAPro", size: 15)
             } else {
                 rateLabel.text = "\(String(roundPercent)) %"
+                myCorrectAnswerLabel.text = receivedCorrectWordArray.formatted()
+                myWrongAnswerLabel.text = receivedIncorrectWordArray.formatted()
             }
             progress.endPointValue = CGFloat(roundPercent)
         }
@@ -116,7 +135,7 @@ final class InformationViewController: UIViewController {
         progress.endPointValue = 0.3
         
         totalCountLabel.font = UIFont(name: "BMHANNAPro", size: 20)
-        developerLabel.font = UIFont(name: "BMHANNAAir", size: 20)
+        developerLabel.font = UIFont(name: "BMHANNAPro", size: 20)
         developerLabel.textAlignment = .center
         developerLabel.text = "개발자 정보"
     }

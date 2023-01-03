@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNAPro.ttf">
+            <string>BMHANNAPro</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -17,19 +22,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="0Lc-CI-mC3">
-                                <rect key="frame" x="146.66666666666666" y="376" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="iyt-8G-OkD"/>
-                                    <constraint firstAttribute="width" constant="100" id="rI5-pu-FJN"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Kcn-pr-roj">
+                                <rect key="frame" x="140.33333333333334" y="353.66666666666669" width="112.66666666666666" height="145"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="0Lc-CI-mC3">
+                                        <rect key="frame" x="6.3333333333333144" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="iyt-8G-OkD"/>
+                                            <constraint firstAttribute="width" constant="100" id="rI5-pu-FJN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EveryDay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8s-wy-aOd">
+                                        <rect key="frame" x="0.0" y="120" width="112.66666666666667" height="25"/>
+                                        <fontDescription key="fontDescription" name="BMHANNAPro" family="BM HANNA Pro" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0Lc-CI-mC3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Fdd-9i-43G"/>
-                            <constraint firstItem="0Lc-CI-mC3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SBL-aR-zdI"/>
+                            <constraint firstItem="Kcn-pr-roj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="no9-ou-kX6"/>
+                            <constraint firstItem="Kcn-pr-roj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xWH-G1-gNT"/>
                         </constraints>
                     </view>
                 </viewController>

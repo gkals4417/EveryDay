@@ -116,8 +116,8 @@
 		4DCD1ECA291B6E0C00F51EF2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D61792A294975380043CAA5 /* CoreData+CoreDataClass.swift */,
 				4D61792B294975380043CAA5 /* CoreData+CoreDataProperties.swift */,
+				4D61792A294975380043CAA5 /* CoreData+CoreDataClass.swift */,
 				4DCD1EC8291B5F6400F51EF2 /* CoreDataManager.swift */,
 				4DCD1ECD291B6EF800F51EF2 /* EveryDayManager.swift */,
 			);

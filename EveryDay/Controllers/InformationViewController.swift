@@ -17,7 +17,6 @@ final class InformationViewController: UIViewController {
     @IBOutlet weak var thirdView: UIView!
     @IBOutlet weak var fourthView: UIView!
     @IBOutlet weak var progress: CircularSlider!
-    @IBOutlet weak var developerLabel: UILabel!
     @IBOutlet weak var myCorrectAnswerLabel: UILabel!
     @IBOutlet weak var myWrongAnswerLabel: UILabel!
     
@@ -135,9 +134,6 @@ final class InformationViewController: UIViewController {
         progress.endPointValue = 0.3
         
         totalCountLabel.font = UIFont(name: "BMHANNAPro", size: 20)
-        developerLabel.font = UIFont(name: "BMHANNAPro", size: 20)
-        developerLabel.textAlignment = .center
-        developerLabel.text = "개발자 정보"
     }
     
     func setupGesture() {

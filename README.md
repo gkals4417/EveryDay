@@ -173,141 +173,42 @@ override func viewDidLoad() {
 ## Structure
 
 MVC Pattern<br/>
-├── WeatherApp<br/>
-&nbsp;&nbsp;&nbsp;   ├─ SavedLocationData.xcdatamodeld<br/>
+├── EveryDay<br/>
+&nbsp;&nbsp;&nbsp;   ├─ EveryDay.xcdatamodeld<br/>
 &nbsp;&nbsp;&nbsp;   ├─ AppDelegate.swift<br/>
 &nbsp;&nbsp;&nbsp;   ├─ SceneDelegate.swift<br/>
 &nbsp;&nbsp;&nbsp;   ├─ Assets.xcassets<br/>
 &nbsp;&nbsp;&nbsp;   ├─ LaunchScreen.storyboard<br/>
 &nbsp;&nbsp;&nbsp;   ├─ Info.plist<br/>
-&nbsp;&nbsp;&nbsp;   ├─ **Helpers**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ Constants.swift<br/>
+&nbsp;&nbsp;&nbsp;   ├─ Constants.swift<br/>
 &nbsp;&nbsp;&nbsp;   ├─ **Models**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ SavedLocationData+CoreDataClass.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ SavedLocationData+CoreDataProperties.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ CoreData+CoreDataClass.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ CoreData+CoreDataProperties.swift<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ CoreDataManager.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ WeatherManager.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ WeatherModel.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ WeatherNetworkManager.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ EveryDayManager.swift<br/>
 &nbsp;&nbsp;&nbsp;   ├─ **Views**<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ Main.storyboard<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ LocationListCell.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ SettingCell.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ WeatherCollectionViewCell.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ WordListCell.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ WordListCell.xib<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ TotalWordListCell.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ TotalWordListCell.xib<br/>
 &nbsp;&nbsp;&nbsp;   ├─ **Controllers**<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ MainViewController.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ LocationListViewController.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ SettingViewController.swift<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ DetailViewController.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ WordListViewController.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ WordDetailViewController.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ TotalWordListViewController.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ TotalWordListDetailViewController.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      ├─ QuizViewController.swift<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ InformationViewController.swift<br/>
 <br/>
-<img width="849" alt="Screenshot 2022-10-13 at 2 33 53 PM" src="https://user-images.githubusercontent.com/70322435/195510181-d3d5dc8d-9d31-420f-9121-e0fa15dfc798.png">
+<img width="849" alt="Screenshot 2022-10-13 at 2 33 53 PM" src="https://user-images.githubusercontent.com/70322435/210698737-8deaa479-de93-4b36-9ec2-4cea64e1d815.jpg">
 
 ## Troubles & Solution
 
-* CoreData에 파일을 저장하거나 삭제할 때마다 Index: Out of Range 오류가 발생하는 문제
+* 이전 앱인 **날씨보여줭**에서 사용한 것들을 기본적으로 다시 사용하는 것이었기 때문에, 커다란 문제는 없었다.
+> addObserver와 removeObserver
+
+
 > 기존의 작동방식
-1. 앱을 실행하면 기본값으로 설정된 위치를 API로 받아서 배열에 저장한다. 그리고 저장된 배열은 바로 CoreData에 저장된다.
-2. 사용자가 위치찾기 버튼을 클릭하거나, 지역을 SearchBar에 입력할 때마다 API로 데이터를 받아서 배열에 append 한다. 마찬가지로 받은 데이터 배열을 CoreData에 저장한다.
-3. SideMenu에서 특정 지역을 지우거나 클릭하는 경우 **어떤 경우에는 잘 작동하지만, 어떤 경우에는 오류를 내면서 앱이 종료된다.**
-
-> 기존의 작동 방식은 사용자가 매번 지역을 추가할 때마다 배열에 추가하고 CoreData에 저장하는 방법이다보니, 배열의 index를 읽어오는 데 문제가 많이 발생했습니다.<br/>
-> 그래서 매번 데이터를 CoreData에 저장하는 것이 아닌, 앱이 완전히 종료되기 전에 날씨 데이터에서 **지역**만 CoreData에 저장하는 방식으로 변경했습니다.<br/>
-1. 사용자가 새롭게 지역을 추가하면 **날씨 데이터**를 임시 배열에 저장한다. (이 앱의 경우 weatherDatasArray)
-```swift
-func getDatasCityNameFromAPI(cityName: String, completion: @escaping () -> Void){
-   networkManager.getchWeatherWithCityName(cityName: cityName){result in
-      switch result{
-      case .success(let successData):
-         self.weatherDatas = successData
-         self.weatherDatasArray.insert(successData, at: 0)
-         print("WeatherDatasArray : \(self.weatherDatasArray)")
-         completion()
-      case .failure(let error):
-         print(error)
-         completion()
-      }
-   }
-}
-```
-2. 사용자가 앱을 종료하기 직전, CoreData에 임시 배열의 여러 값 중, **위치** 데이터만 뽑아서 배열에 저장한다.
-```swift
-//SceneDelegate.swift
-func sceneDidDisconnect(_ scene: UIScene){
-   weatherManager.weatherDatasArray.forEach{ result in
-      weatherManager.createLocationData(with: result){
-         print("WeatherDatasArray Saved")
-         print("SavedCoreData : \(self.weatherManager.locationSavedArray)")
-      }
-   }
-}
-
-```
-3. 사용자가 앱을 다시 시작하면 viewDidLoad()에서 위치 배열을 뽑아서 다시 API로 위치 기반 데이터를 받아서 화면에 보여준다.
-```swift
-//이 경우, CoreData에 데이터가 있는 경우와 없는 경우로 나눴다.
-func setupBasicData(){
-   if weatherManager.locationSavedArray.isEmpty{
-      weatherManager.fetchDatasFromAPI(lat: 37.5326, lon: 127.024612){
-         print("Hello Swift")
-         DispatchQueue.main.async{
-            self.collectionView.reloadData()
-         }
-      }
-   } else {
-      var locationArray:[String] = []
-      var removeDuplicateArray: [String] = []
-      
-      weatherManager.locationSavedArray.forEach{ result in
-         locationArray.append(result.location ?? "")
-         print("Location Array : \(locationArray)")
-         
-         removeDuplicateArray = Array(Set(locationArray))
-         print("flatMapped Location Array : \(removeDuplicateArray)")
-      }
-      
-      for location in removeDuplicateArray{
-         weatherManager.fetchDatasCityNameFromAPI(cityName: location){
-            DispatchQueue.main.async{
-               self.collectionView.reloadData()
-            }
-         }
-      }
-   }
-}
-```
-
-* CoreData Entity의 적절하지 못한 Attribute
-> 저장하려는 데이터는 **위치** 한개였으나, Attribute는 privacyLocation, savedDate, units도 함께 넣었습니다.. <br/>
-> 어플리케이션 개발 기획 단계에서 더 세밀하게 기획한 다음 개발을 시작해야 겠다는 생각이 들었습니다.
-
-* 사용자가 SearchBar에 지역을 입력하면 CollectionView에서 새로운 지역을 보여줘야 하는데, 그렇지 않았던 문제가 있었습니다.<br/>
-> SearchBar의 경우 SideMenu의 ViewController에 있었고(LocationListViewController), CollectionView는 다른 ViewController에 있어서(MainViewController), LocationListViewController에서 MainViewController에게 데이터를 전달하기 위한 **커스텀 델리게이트 패턴**을 이용했습니다.
-```swift
-//MainViewController.swift
-
-extension MainViewController: ScrollDelegate {
-   func views(){
-      collectionView.scrollsToTop = true
-      collectionView.reloadData()
-   }
-}
-
-//LocationViewController.swift
-
-extension LocationListViewController: UISearchBarDelegate{
-   func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-      guard let city = locationSearchBar.text else {return}
-      weatherManager.fetchDatasCityNameFromAPI(cityName: city){
-         DispatchQueue.main.async{
-            self.locationTableView.reloadData()
-            self.dismiss(animated: true)
-            self.delegate?.views()
-         }
-      }
-   }
-}
-```
-
 * UI를 꾸미기 위한 고민
 > 사용하려는 API에 있는 기본적인 날씨 아이콘들을 사용하려고 했으나 원하는 디자인과는 맞지 않아, 직접 일러스트 작업을 통해서 아이콘과 배경을 만들었습니다.<br/>
 > 이때 참조한 홈페이지는 아래와 같습니다.

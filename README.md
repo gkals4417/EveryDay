@@ -6,8 +6,6 @@
 >개발 기간 : 2022년 12월 1일 ~ 2023년 1월 04일<br/>
 >참여 인원 : Pulsar ([github](https://github.com/gkals4417/gkals4417)) ([blog](https://velog.io/@gkals4417))
 
->대회 이후 현재 추가 개발중...(afterEvent branch)<br/>
-
 ## Environment<br/>
 
 <div align=left>
@@ -17,27 +15,109 @@
    <br/>
    <a href="https://developer.apple.com/documentation/uikit"><img src="https://img.shields.io/badge/UIKit-FFFFFF?style=flat"/></a>
    <br/>
-   <a href="https://github.com/jonkykong/FSCalendar#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a><a href="https://github.com/jonkykong/HGCircularSlider#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a>
+   <a href="https://github.com/jonkykong/FSCalendar#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a><a href="https://github.com/jonkykong/HGCircularSlider#readme"><img src="https://img.shields.io/badge/HGCircularSlider-FFFFFF?style=flat"/></a>
    <br/>
    <img src="https://img.shields.io/badge/MacbookPro M1 Max-FFFFFF?style=flat"/></a>
 </div> 
 
 ## Preview
 
-|SideMenu & TableView|CollectionView|CoreLocation|Detail Information|TableView & MessageUI|
-|--------------------|--------------|------------|------------------|---------------------|
-|![1](https://user-images.githubusercontent.com/70322435/195484901-ef9fcef5-62e9-4337-ba22-d1fdda9f83ef.gif)|![2](https://user-images.githubusercontent.com/70322435/195484951-752de76e-4970-46db-8671-e4a8fc751459.gif)|![3](https://user-images.githubusercontent.com/70322435/195484969-9f983cd9-36e8-4e9c-9d08-6800a8579abc.gif)|![RPReplay_Final1665639877](https://user-images.githubusercontent.com/70322435/195511937-315688e1-2453-4477-a247-878ab0a0621e.gif)|![4](https://user-images.githubusercontent.com/70322435/195484982-bd4a39d5-80e7-4be2-9bf2-acdce4a5e2d5.gif)|
+|FSCalendar|Add Word & WebView|RefreshControl|HGCircularSlider & Timer|
+|--------------------|--------------|------------|------------------|
+|![1](https://user-images.githubusercontent.com/70322435/210695640-1586eebb-41d4-4038-adcd-d90a2e96b502.gif)|![2](https://user-images.githubusercontent.com/70322435/210695647-8a934180-e34a-4b26-a440-a9c4961fcf72.gif)|![3](https://user-images.githubusercontent.com/70322435/210695649-016883b1-90ac-4813-8248-a46e4f375d2e.gif)|![4](https://user-images.githubusercontent.com/70322435/210695656-2da360ff-dab4-4408-b8b2-45374dc2e52b.gif)
+|
 
-### [SideMenu](https://github.com/jonkykong/SideMenu#readme)
-* 지역 추가, 제거를 하기 위한 기능으로 굳이 새로운 tableView를 전체화면으로 띄우는 것보다, 작은 화면으로 나왔다가 사라지는 방법이 더 깔끔하다고 생각되어서 채택했습니다.<br/>
-* MainViewController의 확장으로 SideMenu Delegate를 이용하여, SideMenu가 사라지면 자동으로 MainViewController의 collectionView를 새로고침하도록 했습니다.
+### [FSCalendar](https://github.com/WenchaoD/FSCalendar)
+* collectionView를 통해 일일해 달력을 만드는 것보다, 외부 라이브러리가 더 편리해서 사용했습니다.<br/>
+* 라이브러리의 기본 메서드를 통해 커스터마이징 및 '오늘' 글씨 추가, 단어저장 현황 등을 표현했습니다.
 ```swift
-extension MainViewController: SideMenuNavigationControllerDelegate{
-   func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool){
-      collectionView.reloadData()
-   }
+//캘린더 외형 변경
+calendarView.backgroundColor = .white
+calendarView.appearance.titleFont = UIFont(name: "BMHANNAAir", size: 15)
+calendarView.appearance.weekdayFont = UIFont(name: "BMHANNAAir", size: 15)
+calendarView.appearance.subtitleFont = UIFont(name: "BMHANNAAir", size: 10)
+calendarView.appearance.headerTitleFont = UIFont(name: "BMHANNAAir", size: 20)
+        
+calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
+calendarView.appearance.subtitleTodayColor = .black
+calendarView.appearance.titleTodayColor = .black
+calendarView.appearance.selectionColor = Constants.customBlueColor
+calendarView.appearance.headerTitleColor = .black
+calendarView.appearance.titleWeekendColor = .red
+calendarView.appearance.todayColor = .white
+calendarView.appearance.eventDefaultColor = Constants.customBlueColor
+calendarView.appearance.eventSelectionColor = Constants.customBlueColor
+calendarView.appearance.borderRadius = 0.5
+calendarView.swipeToChooseGesture.isEnabled = true
+        
+calendarView.calendarWeekdayView.weekdayLabels[0].textColor = .red
+calendarView.calendarWeekdayView.weekdayLabels[1].textColor = .black
+calendarView.calendarWeekdayView.weekdayLabels[2].textColor = .black
+calendarView.calendarWeekdayView.weekdayLabels[3].textColor = .black
+calendarView.calendarWeekdayView.weekdayLabels[4].textColor = .black
+calendarView.calendarWeekdayView.weekdayLabels[5].textColor = .black
+calendarView.calendarWeekdayView.weekdayLabels[6].textColor = .red
+```
+```swift
+extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+
+//날짜를 선택했을 때 저장된 단어를 보여주는 메서드
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendarSelectArray = []
+        for list in savedCoreArray {
+            let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
+            let b = date.formatted(date: .numeric, time: .omitted)
+            
+            if a == b {
+                calendarSelectArray.append(list)
+            }
+        }
+        print("calendarSelectArray after select date : \(calendarSelectArray)")
+    }
+    
+//달력이 보여질 때마다 저장된 단어를 보여주는 메서드
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendarSelectArray = []
+        
+        for list in savedCoreArray {
+            let today = Date().formatted(date: .numeric, time: .omitted)
+            let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
+            
+            if today == a {
+                calendarSelectArray.append(list)
+            }
+        }
+    }
+    
+//캘린더에 단어저장 현황을 보여주는 
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        var outNumber: Int = 0
+        for list in savedCoreArray {
+            let a = list.savedDate?.formatted(date: .numeric, time: .omitted)
+            let b = date.formatted(date: .numeric, time: .omitted)
+            if a == b {
+                outNumber = 1
+            } else {
+
+            }
+        }
+        return outNumber
+    }
+    
+//현재 날짜에 맞게 '오늘' 단어를 보여주는 메서드
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        let today = Date()
+        var temp = ""
+        if today.formatted(date: .numeric, time: .omitted) == date.formatted(date: .numeric, time: .omitted){
+            temp = "오늘"
+        }
+        return temp
+    }
 }
 ```
+### [HGCircularSlider](https://github.com/HamzaGhazouani/HGCircularSlider)
+* 기본 progressview보다 조금 더 시각적으로 보기 편하게 하기 위해 원형의 slider가 필요했습니다.
+
 ### CollectionView
 * 메인 화면에는 저장된 지역의 기본 정보를 보여지게 했습니다.<br/>
 * CollectionView의 Cell을 전체 화면으로 한 뒤, Scroll Direction을 Horizontal로 해서 좌, 우로 넘길 수 있게 했습니다.<br/>

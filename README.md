@@ -2,8 +2,8 @@
 
 ## Project Introduction
 
-
->개발 기간 : 2022년 10월 5일 ~ 2022년 10월 11일<br/>
+매일매일 단어를 저장하고, 저장 현황을 캘린더로 확인할 수 있는 단어장앱 입니다.<br/>
+>개발 기간 : 2022년 12월 1일 ~ 2023년 1월 04일<br/>
 >참여 인원 : Pulsar ([github](https://github.com/gkals4417/gkals4417)) ([blog](https://velog.io/@gkals4417))
 
 >대회 이후 현재 추가 개발중...(afterEvent branch)<br/>

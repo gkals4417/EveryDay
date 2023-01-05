@@ -17,7 +17,7 @@
    <br/>
    <a href="https://developer.apple.com/documentation/uikit"><img src="https://img.shields.io/badge/UIKit-FFFFFF?style=flat"/></a>
    <br/>
-   <a href="https://github.com/jonkykong/SideMenu#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a>
+   <a href="https://github.com/jonkykong/FSCalendar#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a><a href="https://github.com/jonkykong/HGCircularSlider#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a>
    <br/>
    <img src="https://img.shields.io/badge/MacbookPro M1 Max-FFFFFF?style=flat"/></a>
 </div> 

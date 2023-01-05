@@ -205,22 +205,21 @@ MVC Pattern<br/>
 ## Troubles & Solution
 
 * 이전 앱인 **날씨보여줭**에서 사용한 것들을 기본적으로 다시 사용하는 것이었기 때문에, 커다란 문제는 없었다.
-> addObserver와 removeObserver
+> removeObserver를 언제...?
+viewDidLoad()에서 화면이 로딩되면 addObserver를 불러오는 것은 이해를 했지만, removeObserver를 해야 한다는 것과, 언제 해야 할지 고민을 했다.
+화면을 벗어났을 때에는 Observer가 작동하면 안되기 때문에 viewDidDisappear()메서드를 이용해서 화면을 나가면 removeObserver를 작동하게 했다.
 
-
-> 기존의 작동방식
-* UI를 꾸미기 위한 고민
-> 사용하려는 API에 있는 기본적인 날씨 아이콘들을 사용하려고 했으나 원하는 디자인과는 맞지 않아, 직접 일러스트 작업을 통해서 아이콘과 배경을 만들었습니다.<br/>
-> 이때 참조한 홈페이지는 아래와 같습니다.
-
-[색 조합 참조](https://colorhunt.co/) <br/>
-[날씨 아이콘](https://dribbble.com/shots/13480408-Weather-icons-Dark?utm_source=Clipboard_Shot&utm_campaign=xiaoyufeng&utm_content=Weather%20icons%20%20-%20Dark&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=xiaoyufeng&utm_content=Weather%20icons%20%20-%20Dark&utm_medium=Social_Share)
-
-## NEXT...
-
-단위 변경 설정, 개인정보처리방침 등 더 다양한 기능들을 추가하고 출시를 목표로 더 다듬을 계획입니다.
+* 커스텀 폰트는 어떻게...?
+> Storyboard에서 바로 폰트를 바꿔도 되었지만, 코드를 통해 폰트를 바꾸고 싶었다.
+생각보다 번거로운 과정이 있었는데, 원하는 폰트를 넣고, Info.plist에 **Fonts provided by application**에서 폰트파일을 추가해야 했다.
+그리고 UIFont(name: size: )를 통해 폰트를 사용할 수 있게 되었다.
 
 ---
 
-2022.11.10 앱스토어 출시<br/>
-2022.11.11 API 변경 작업 시작 (WeatherKit)
+UI관련
+[아이콘](https://dribbble.com/shots/13480408-Weather-icons-Dark?utm_source=Clipboard_Shot&utm_campaign=xiaoyufeng&utm_content=Weather%20icons%20%20-%20Dark&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=xiaoyufeng&utm_content=Weather%20icons%20%20-%20Dark&utm_medium=Social_Share](https://www.flaticon.com/free-icon/annotation_9149280?term=memo&page=1&position=29&origin=search&related_id=9149280))
+
+---
+
+2023.1.4 앱스토어 출시<br/>
+

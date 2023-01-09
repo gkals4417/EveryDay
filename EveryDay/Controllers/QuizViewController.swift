@@ -143,10 +143,15 @@ final class QuizViewController: UIViewController {
             currentTime -= 1
             timeLabel.text = "\(String(describing: currentTime)) 초"
             progress.endPointValue = CGFloat(currentTime)
+            startButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            startButton.setTitle("진행중", for: .normal)
         } else {
             timer?.invalidate()
             currentTime = 0
             timeLabel.text = "끝났습니다!"
+            startButton.setTitle("시작", for: .normal)
+            startButton.setImage(UIImage(), for: .normal)
+            answerTextField.isEnabled = false
             AudioServicesPlaySystemSound(1102)
         }
     }

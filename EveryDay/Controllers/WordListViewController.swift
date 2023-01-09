@@ -40,6 +40,7 @@ final class WordListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        appManager.refreshDelegate = self
         initialFunc()
         appearanceFunc()
         tableView.register(UINib(nibName: "WordListCell", bundle: nil), forCellReuseIdentifier: Identifier.wordListCell)
@@ -75,9 +76,6 @@ final class WordListViewController: UIViewController {
         todayButton.setTitle("오늘", for: .normal)
         todayButton.setTitleColor(.black, for: .normal)
         todayButton.setTitleColor(.lightGray, for: .highlighted)
-        DispatchQueue.main.async {
-            self.todayButton.titleLabel?.font = UIFont(name: "BMHANNAAir", size: 15)
-        }
         
         calendarView.appearance.titleFont = UIFont(name: "BMHANNAAir", size: 15)
         calendarView.appearance.weekdayFont = UIFont(name: "BMHANNAAir", size: 15)
@@ -107,22 +105,23 @@ final class WordListViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: nil, message: "추가", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "저장", style: .default) { UIAlertAction in
-                self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
-                self.savedCoreArray = self.appManager.getCoreDataArray()
-                self.tableView.reloadData()
-                    self.calendarView.reloadData()
-            }
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        alert.addTextField()
-        alert.addTextField()
-        alert.textFields?[0].placeholder = "단어를 입력하세요."
-        alert.textFields?[1].placeholder = "뜻을 입력하세요."
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        present(alert, animated: true)
+//        let alert = UIAlertController(title: nil, message: "추가", preferredStyle: .alert)
+//        let ok = UIAlertAction(title: "저장", style: .default) { UIAlertAction in
+//                self.appManager.saveCoreData(word: (alert.textFields?[0].text) ?? "", meaning: (alert.textFields?[1].text) ?? "", memo: "") {
+//                self.savedCoreArray = self.appManager.getCoreDataArray()
+//                self.tableView.reloadData()
+//                    self.calendarView.reloadData()
+//            }
+//        }
+//        let cancel = UIAlertAction(title: "취소", style: .cancel)
+//        alert.addTextField()
+//        alert.addTextField()
+//        alert.textFields?[0].placeholder = "단어를 입력하세요."
+//        alert.textFields?[1].placeholder = "뜻을 입력하세요."
+//        alert.addAction(ok)
+//        alert.addAction(cancel)
+//        present(alert, animated: true)
+        performSegue(withIdentifier: Identifier.toSaveVC, sender: sender)
     }
     
     @IBAction func todayButtonTapped(_ sender: UIButton) {
@@ -221,5 +220,17 @@ extension WordListViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
             temp = "오늘"
         }
         return temp
+    }
+}
+
+extension WordListViewController: RefreshDelegate {
+    func refreshTableView() {
+        savedCoreArray = appManager.getCoreDataArray()
+        tableView.reloadData()
+    }
+    
+    func refreshCalendar() {
+        savedCoreArray = appManager.getCoreDataArray()
+        calendarView.reloadData()
     }
 }

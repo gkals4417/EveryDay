@@ -42,7 +42,7 @@ final class CoreDataManager {
     
     // MARK: - SAVE
     
-    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void) {
+    func saveCoreData(word: String, meaning: String, memo: String, wordClass: String, completion: @escaping () -> Void) {
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 if let coreData = NSManagedObject(entity: entity, insertInto: context) as? CoreData {
@@ -50,6 +50,7 @@ final class CoreDataManager {
                     coreData.savedMeaning = meaning
                     coreData.savedDate = Date()
                     coreData.savedDetailMemo = memo
+                    coreData.wordClass = wordClass
                     
                     if context.hasChanges {
                         do {

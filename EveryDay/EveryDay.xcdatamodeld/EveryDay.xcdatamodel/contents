@@ -7,5 +7,6 @@
         <attribute name="savedDetailMemo" optional="YES" attributeType="String"/>
         <attribute name="savedMeaning" optional="YES" attributeType="String"/>
         <attribute name="savedWord" optional="YES" attributeType="String"/>
+        <attribute name="wordClass" optional="YES" attributeType="String"/>
     </entity>
 </model>

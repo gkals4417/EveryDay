@@ -14,6 +14,11 @@ protocol QuizInfoDelegate: AnyObject {
     func getQuizIncorrectData() -> [String]
 }
 
+protocol RefreshDelegate: AnyObject {
+    func refreshTableView()
+    func refreshCalendar()
+}
+
 final class EveryDayManager {
     
     private let coreDataManager = CoreDataManager.shared
@@ -23,6 +28,7 @@ final class EveryDayManager {
     var coreDataArray: [CoreData] = []
     
     var delegate: QuizInfoDelegate?
+    var refreshDelegate: RefreshDelegate?
     
     private init(){
         coreDataArray = coreDataManager.readCoreData()
@@ -34,8 +40,8 @@ final class EveryDayManager {
         return coreDataArray
     }
     
-    func saveCoreData(word: String, meaning: String, memo: String, completion: @escaping () -> Void) {
-        coreDataManager.saveCoreData(word: word, meaning: meaning, memo: memo) {
+    func saveCoreData(word: String, meaning: String, memo: String, wordClass: String, completion: @escaping () -> Void) {
+        coreDataManager.saveCoreData(word: word, meaning: meaning, memo: memo, wordClass: wordClass) {
             completion()
             self.coreDataArray = self.coreDataManager.readCoreData()
         }

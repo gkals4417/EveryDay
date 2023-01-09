@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +39,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnD-a0-A0f">
                                 <rect key="frame" x="320" y="96" width="60" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="ILA-10-Hkm"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ILA-10-Hkm"/>
                                     <constraint firstAttribute="height" constant="40" id="d4v-fu-feN"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
@@ -64,6 +65,7 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="pze-Xa-o8w"/>
+                                <segue destination="4YX-9L-861" kind="showDetail" identifier="toSaveVC" id="iaH-3v-Jua"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -563,13 +565,222 @@
             </objects>
             <point key="canvasLocation" x="4096.9230769230771" y="-567.29857819905214"/>
         </scene>
+        <!--Save View Controller-->
+        <scene sceneID="ZR4-fZ-gbg">
+            <objects>
+                <viewController id="4YX-9L-861" customClass="SaveViewController" customModule="EveryDay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kce-eG-lzF">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="7Ag-CO-p6R">
+                                <rect key="frame" x="10" y="147" width="370" height="530.33333333333337"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="K47-3X-lXg">
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="190"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qmj-Ee-d3E">
+                                                <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uS5-Qz-wTS">
+                                                <rect key="frame" x="0.0" y="64" width="370" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DEg-Bf-N7T">
+                                                <rect key="frame" x="0.0" y="128" width="370" height="62"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="VtY-cw-fHd">
+                                        <rect key="frame" x="0.0" y="243" width="370" height="200"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="uYQ-bt-0IY">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Oe-2p-smz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="59.666666666666664" height="44.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 명사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="7gJ-69-JU3"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvH-m2-8S2">
+                                                        <rect key="frame" x="0.0" y="51.666666666666686" width="75.666666666666671" height="44.666666666666657"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 대명사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="RvO-2f-N8t"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O93-td-zTC">
+                                                        <rect key="frame" x="0.0" y="103.33333333333331" width="75.666666666666671" height="45"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 형용사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="es5-Te-GFO"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8x-6X-GFZ">
+                                                        <rect key="frame" x="0.0" y="155.33333333333337" width="59.666666666666664" height="44.666666666666657"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 동사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="Tch-84-2J7"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Y45-oi-9MN">
+                                                <rect key="frame" x="210" y="0.0" width="160" height="200"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkM-TV-6uO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="59.666666666666664" height="44.666666666666664"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 부사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="uuR-4O-TlC"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVs-95-qow">
+                                                        <rect key="frame" x="0.0" y="51.666666666666686" width="75.666666666666671" height="44.666666666666657"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 전치사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="YVJ-Li-cio"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAz-fM-nga">
+                                                        <rect key="frame" x="0.0" y="103.33333333333331" width="75.666666666666671" height="45"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 접속사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="XeU-Dm-UcG"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sn-kj-Z6n">
+                                                        <rect key="frame" x="0.0" y="155.33333333333337" width="75.666666666666671" height="44.666666666666657"/>
+                                                        <color key="tintColor" name="MyBackgroundColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title=" 감탄사" image="checkmark.rectangle" catalog="system">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <state key="selected" image="checkmark.rectangle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="wordClassButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="dJd-v1-Zk4"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="bsw-ge-3H8"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="82" translatesAutoresizingMaskIntoConstraints="NO" id="A5f-bb-YTr">
+                                        <rect key="frame" x="0.0" y="495.99999999999994" width="370" height="34.333333333333314"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-cN-RTv">
+                                                <rect key="frame" x="0.0" y="0.0" width="144" height="34.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <connections>
+                                                    <action selector="cancelButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="PeT-wo-2hM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-qC-jdf">
+                                                <rect key="frame" x="226" y="0.0" width="144" height="34.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <connections>
+                                                    <action selector="saveButtonTapped:" destination="4YX-9L-861" eventType="touchUpInside" id="sh2-V3-Oe2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EIr-Ab-Th6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EIr-Ab-Th6" firstAttribute="trailing" secondItem="7Ag-CO-p6R" secondAttribute="trailing" constant="10" id="3aE-Kn-ITw"/>
+                            <constraint firstItem="7Ag-CO-p6R" firstAttribute="top" secondItem="EIr-Ab-Th6" secondAttribute="top" constant="100" id="6PN-Cv-B9b"/>
+                            <constraint firstItem="EIr-Ab-Th6" firstAttribute="bottom" secondItem="7Ag-CO-p6R" secondAttribute="bottom" constant="109.67" id="AcR-QG-pAv"/>
+                            <constraint firstItem="7Ag-CO-p6R" firstAttribute="centerX" secondItem="kce-eG-lzF" secondAttribute="centerX" id="R8i-J4-sk1"/>
+                            <constraint firstItem="7Ag-CO-p6R" firstAttribute="leading" secondItem="kce-eG-lzF" secondAttribute="leading" constant="10" id="nll-5J-GMb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gvX-d8-FnC"/>
+                    <connections>
+                        <outlet property="adjectiveButton" destination="O93-td-zTC" id="0Sd-ah-5gp"/>
+                        <outlet property="adverbButton" destination="qkM-TV-6uO" id="tNp-sN-Fzt"/>
+                        <outlet property="cancelButton" destination="jNe-cN-RTv" id="JdT-w6-MEs"/>
+                        <outlet property="conjunctionButton" destination="CAz-fM-nga" id="EMx-72-e3G"/>
+                        <outlet property="interjectionButton" destination="0Sn-kj-Z6n" id="dMh-wm-eOj"/>
+                        <outlet property="meaningTextField" destination="uS5-Qz-wTS" id="0VE-MR-UjT"/>
+                        <outlet property="memoTextField" destination="DEg-Bf-N7T" id="zUQ-TX-j18"/>
+                        <outlet property="nounButton" destination="0Oe-2p-smz" id="kHJ-2p-wsp"/>
+                        <outlet property="prepositionButton" destination="DVs-95-qow" id="lSV-lK-N53"/>
+                        <outlet property="pronounButton" destination="tvH-m2-8S2" id="7So-8L-ATp"/>
+                        <outlet property="saveButton" destination="lSy-qC-jdf" id="m07-V2-Fq2"/>
+                        <outlet property="verbButton" destination="K8x-6X-GFZ" id="4iQ-uZ-4hi"/>
+                        <outlet property="wordTextField" destination="qmj-Ee-d3E" id="jAo-Rb-LbH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26g-TY-icP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4097" y="-1295"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AddButton" width="21" height="21"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="checkmark.rectangle" catalog="system" width="128" height="93"/>
+        <image name="checkmark.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="questionmark.folder.fill" catalog="system" width="128" height="96"/>
+        <namedColor name="MyBackgroundColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

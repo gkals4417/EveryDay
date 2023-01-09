@@ -66,6 +66,8 @@ class SaveViewController: UIViewController {
             print(nounButton.isSelected)
         case " 대명사":
             pronounButton.isSelected.toggle()
+            print(pronounButton.isSelected)
+
         case " 형용사":
             adjectiveButton.isSelected.toggle()
         case " 동사":

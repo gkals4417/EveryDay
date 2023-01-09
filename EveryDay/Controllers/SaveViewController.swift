@@ -66,25 +66,18 @@ class SaveViewController: UIViewController {
             print(nounButton.isSelected)
         case " 대명사":
             pronounButton.isSelected.toggle()
-            print(pronounButton.isSelected)
         case " 형용사":
             adjectiveButton.isSelected.toggle()
-            print(adjectiveButton.isSelected)
         case " 동사":
             verbButton.isSelected.toggle()
-            print(verbButton.isSelected)
         case " 부사":
             adverbButton.isSelected.toggle()
-            print(adverbButton.isSelected)
         case " 전치사":
             prepositionButton.isSelected.toggle()
-            print(prepositionButton.isSelected)
         case " 접속사":
             conjunctionButton.isSelected.toggle()
-            print(conjunctionButton.isSelected)
         case " 감탄사":
             interjectionButton.isSelected.toggle()
-            print(interjectionButton.isSelected)
         default:
             return
         }

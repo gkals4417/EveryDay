@@ -54,7 +54,7 @@ class SaveViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    
+    //문제가 있구만
     @IBAction func wordClassButtonTapped(_ sender: UIButton) {
         guard let temp = sender.titleLabel?.text else {return}
         
@@ -66,8 +66,6 @@ class SaveViewController: UIViewController {
             print(nounButton.isSelected)
         case " 대명사":
             pronounButton.isSelected.toggle()
-            print(pronounButton.isSelected)
-
         case " 형용사":
             adjectiveButton.isSelected.toggle()
         case " 동사":

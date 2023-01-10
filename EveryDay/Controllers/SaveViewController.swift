@@ -23,6 +23,8 @@ class SaveViewController: UIViewController {
     @IBOutlet weak var interjectionButton: UIButton!
     @IBOutlet weak var memoTextField: UITextField!
     
+    private var tempWordClass: [String] = []
+    
     let appManager = EveryDayManager.shared
     
     private var savedCoreArray: [CoreData] = [] {
@@ -41,7 +43,12 @@ class SaveViewController: UIViewController {
     
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        appManager.saveCoreData(word: wordTextField.text ?? "", meaning: meaningTextField.text ?? "", memo: memoTextField.text ?? "", wordClass: "") {
+        appManager.saveCoreData(
+            word: wordTextField.text ?? "",
+            meaning: meaningTextField.text ?? "",
+            memo: memoTextField.text ?? "",
+            wordClass: tempWordClass)
+        {
             self.savedCoreArray = self.appManager.getCoreDataArray()
             self.appManager.refreshDelegate?.refreshTableView()
             self.appManager.refreshDelegate?.refreshCalendar()
@@ -63,21 +70,85 @@ class SaveViewController: UIViewController {
         switch temp {
         case " 명사":
             nounButton.isSelected.toggle()
-            print(nounButton.isSelected)
+            if tempWordClass.contains(" 명사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 명사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 명사")
+            }
+            
+            print(tempWordClass)
         case " 대명사":
             pronounButton.isSelected.toggle()
+            if tempWordClass.contains(" 대명사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 대명사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 대명사")
+            }
+            print(tempWordClass)
         case " 형용사":
             adjectiveButton.isSelected.toggle()
+            if tempWordClass.contains(" 형용사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 형용사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 형용사")
+            }
+            print(tempWordClass)
         case " 동사":
             verbButton.isSelected.toggle()
+            if tempWordClass.contains(" 동사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 동사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 동사")
+            }
+            print(tempWordClass)
         case " 부사":
             adverbButton.isSelected.toggle()
+            if tempWordClass.contains(" 부사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 부사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 부사")
+            }
+            print(tempWordClass)
         case " 전치사":
             prepositionButton.isSelected.toggle()
+            if tempWordClass.contains(" 전치사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 전치사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 전치사")
+            }
+            print(tempWordClass)
         case " 접속사":
             conjunctionButton.isSelected.toggle()
+            if tempWordClass.contains(" 접속사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 접속사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 접속사")
+            }
+            print(tempWordClass)
         case " 감탄사":
             interjectionButton.isSelected.toggle()
+            if tempWordClass.contains(" 감탄사") {
+                if let firstIndex = tempWordClass.firstIndex(of: " 감탄사") {
+                    tempWordClass.remove(at: firstIndex)
+                }
+            } else {
+                tempWordClass.append(" 감탄사")
+            }
+            print(tempWordClass)
         default:
             return
         }

@@ -15,6 +15,8 @@ final class WordDetailViewController: UIViewController {
     @IBOutlet weak var meaningDetailLabel: UILabel!
     @IBOutlet weak var wordDetailLabel: UILabel!
     @IBOutlet weak var memoTextField: UITextField!
+    @IBOutlet weak var wordClassTextView: UITextView!
+    
     private let appManager = EveryDayManager.shared
     var tempArray: CoreData? {
         didSet {
@@ -41,6 +43,14 @@ final class WordDetailViewController: UIViewController {
         meaningDetailLabel.text = tempArray?.savedMeaning
         memoTextField.text = tempArray?.savedDetailMemo
         memoTextField.placeholder = "메모를 입력하세요."
+        
+        let reduceNames: String = (tempArray?.wordClass?.reduce("품사 : ") {
+            return $0 + "\n" + $1
+        })!
+        
+        print(reduceNames)
+        
+        wordClassTextView.text = reduceNames
     }
     
     private func appearanceFunc() {
@@ -56,6 +66,11 @@ final class WordDetailViewController: UIViewController {
         memoTextField.layer.masksToBounds = true
         memoTextField.layer.borderWidth = 0.1
         memoTextField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        wordClassTextView.font = UIFont(name: "BMHANNAPro", size: 18)
+        wordClassTextView.layer.masksToBounds = true
+        wordClassTextView.layer.borderWidth = 0.1
+        wordClassTextView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -85,10 +100,11 @@ extension WordDetailViewController: UITextFieldDelegate {
         if let temp = tempArray {
             temp.savedDetailMemo = textField.text
             appManager.updateCoreData(newCoreData: temp) {
-            
+            //이부분에 품사저장 메서드 추가해야 함.
             }
         }
         textField.resignFirstResponder()
+        dismiss(animated: true)
         return true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

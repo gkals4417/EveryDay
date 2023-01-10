@@ -403,14 +403,26 @@
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="240" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hMR-HJ-PQh">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="247" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-NK-9sa">
                                         <rect key="frame" x="0.0" y="587" width="390" height="200"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="240" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hMR-HJ-PQh">
+                                                <rect key="frame" x="0.0" y="0.0" width="195" height="200"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="wordclass" translatesAutoresizingMaskIntoConstraints="NO" id="DYo-6K-uwU">
+                                                <rect key="frame" x="195" y="0.0" width="195" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="xEL-Yy-OUY"/>
+                                            <constraint firstAttribute="height" constant="200" id="OVj-7z-9ap"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-rj-C1f">
@@ -433,12 +445,13 @@
                         <outlet property="memoTextField" destination="hMR-HJ-PQh" id="QWM-Tl-QHx"/>
                         <outlet property="spinner" destination="e1H-rj-C1f" id="0w7-We-Rau"/>
                         <outlet property="webView" destination="FP2-st-w53" id="YKc-2j-lgZ"/>
+                        <outlet property="wordClassTextView" destination="DYo-6K-uwU" id="pZO-wg-g9u"/>
                         <outlet property="wordLabel" destination="BHk-f6-tVI" id="OZx-pG-Ohh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ten-ph-9fG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4110" y="210"/>
+            <point key="canvasLocation" x="4109.2307692307695" y="209.71563981042652"/>
         </scene>
         <!--캘린더-->
         <scene sceneID="Mkl-J1-7kn">
@@ -519,14 +532,27 @@
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Yw-H6-aIZ">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wFB-ge-rgD">
                                         <rect key="frame" x="0.0" y="540" width="390" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="AB7-Gg-dAH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5Yw-H6-aIZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="195" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="AB7-Gg-dAH"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NmT-y9-Piz">
+                                                <rect key="frame" x="195" y="0.0" width="195" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hde-nI-UCB">
@@ -558,6 +584,7 @@
                         <outlet property="memoTextField" destination="5Yw-H6-aIZ" id="Xxx-5D-g0O"/>
                         <outlet property="spinner" destination="hde-nI-UCB" id="qiv-7B-98U"/>
                         <outlet property="webView" destination="2CT-5c-FEa" id="4Eb-W6-Azn"/>
+                        <outlet property="wordClassTextView" destination="NmT-y9-Piz" id="Tqo-Zy-RsU"/>
                         <outlet property="wordDetailLabel" destination="hwK-A2-o7A" id="0UT-Pn-Mfr"/>
                     </connections>
                 </viewController>
@@ -781,6 +808,9 @@
         <namedColor name="MyBackgroundColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -15,6 +15,8 @@ final class ToTalWordDetailViewController: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var meaningLabel: UILabel!
     @IBOutlet weak var memoTextField: UITextField!
+    @IBOutlet weak var wordClassTextView: UITextView!
+    
     private let appManager = EveryDayManager.shared
     var tempArray: CoreData? {
         didSet {
@@ -45,6 +47,15 @@ final class ToTalWordDetailViewController: UIViewController {
         meaningLabel.text = tempArray?.savedMeaning
         memoTextField.text = tempArray?.savedDetailMemo
         memoTextField.placeholder = "메모를 입력하세요."
+        
+        let reduceNames: String = (tempArray?.wordClass?.reduce("품사 : ") {
+            return $0 + "\n" + $1
+        })!
+        
+        print(reduceNames)
+        
+        wordClassTextView.text = reduceNames
+        
     }
     
     private func appearanceFunc() {
@@ -59,6 +70,12 @@ final class ToTalWordDetailViewController: UIViewController {
         memoTextField.layer.masksToBounds = true
         memoTextField.layer.borderWidth = 0.1
         memoTextField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        wordClassTextView.font = UIFont(name: "BMHANNAPro", size: 18)
+        wordClassTextView.textAlignment = .center
+        wordClassTextView.layer.masksToBounds = true
+        wordClassTextView.layer.borderWidth = 0.1
+        wordClassTextView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -92,6 +109,7 @@ extension ToTalWordDetailViewController: UITextFieldDelegate {
             }
         }
         textField.resignFirstResponder()
+        dismiss(animated: true)
         return true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

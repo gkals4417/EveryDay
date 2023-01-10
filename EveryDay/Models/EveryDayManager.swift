@@ -40,7 +40,7 @@ final class EveryDayManager {
         return coreDataArray
     }
     
-    func saveCoreData(word: String, meaning: String, memo: String, wordClass: String, completion: @escaping () -> Void) {
+    func saveCoreData(word: String, meaning: String, memo: String, wordClass: [String], completion: @escaping () -> Void) {
         coreDataManager.saveCoreData(word: word, meaning: meaning, memo: memo, wordClass: wordClass) {
             completion()
             self.coreDataArray = self.coreDataManager.readCoreData()

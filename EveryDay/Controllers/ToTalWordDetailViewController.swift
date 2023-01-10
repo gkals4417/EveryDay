@@ -72,7 +72,6 @@ final class ToTalWordDetailViewController: UIViewController {
         memoTextField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
         wordClassTextView.font = UIFont(name: "BMHANNAPro", size: 18)
-        wordClassTextView.textAlignment = .center
         wordClassTextView.layer.masksToBounds = true
         wordClassTextView.layer.borderWidth = 0.1
         wordClassTextView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
